@@ -1,14 +1,15 @@
 import sys, os, subprocess, signal
 
 programs = [
-	'LuaHashMap51',
-	'LuaHashMap52',
-    'stl_unordered_map',
-	'stl_unordered_map_string',
-    'perl_hash',
-    'python_dict',
-	'ruby_hash',
-	'tcl_hash',
+#	'LuaHashMap51',
+#	'LuaHashMap52',
+#	'LuaHashMapJIT',
+#   'stl_unordered_map',
+   'stl_unordered_map_string',
+#    'perl_hash',
+#    'python_dict',
+#   'ruby_hash',
+#   'tcl_hash',
 ]
 #
 #    'glib_hash_table',
@@ -20,10 +21,10 @@ programs = [
 #    'python_dict',
    # 'ruby_hash',
 
-minkeys  =  2*1000*1000
-maxkeys  = 32*1000*1000
-interval =  4*1000*1000
-best_out_of = 3
+minkeys  =  10*1000*1000
+maxkeys  = 30*1000*1000
+interval =  10*1000*1000
+best_out_of = 2
 
 # for the final run, use this:
 #minkeys  =  2*1000*1000

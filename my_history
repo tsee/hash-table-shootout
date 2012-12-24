@@ -1,0 +1,500 @@
+  143  open .
+  144  cd .ssh/
+  145  ls
+  146  ssh-add AssemblaPublicKey 
+  147  cd TEMP
+  148  ls
+  149  cd SUBREPOTEST/
+  150  ls
+  151  hg clone ssh://hg@192.168.192.25/main main2
+  152  cd ..
+  153  gvim lpegtest.lua
+  154  luacocoa lpegtest.lua 
+  155  cd main
+  156  ls
+  157  less external/
+  158  cat .hgsub
+  159  hg paths
+  160  hg pull -u
+  161  hg rollback
+  162  hg update -C tip
+  163  hg pull -u
+  164  hg rollback
+  165  cd ..
+  166  ls
+  167  rm -rf main
+  168  cd main2
+  169  ls
+  170  less .hg
+  171  less .hgsub
+  172  ls -l
+  173  ls -l
+  174  less .hgsubstate 
+  175  /Applications/CoronaSDK.2012.812/Corona\ Terminal ; exit;
+  176  ls
+  177  cd Source/GIT/
+  178  ls
+  179  cd openal-android
+  180  ls
+  181  git log
+  182  cd /Volumes/CoronaWork6/CoronaWork6
+  183  mhgResources='/Applications/MacHg.app/Contents/Resources'; alias mhg='"${mhgResources}/localhg"'; alias chg='HGPLAIN=1 HGENCODING=UTF-8 HGRCPATH="/Users/ewing/.hgrc:/Users/ewing/Library/Application Support/MacHg/hgrc" "${mhgResources}/localhg"'; "${mhgResources}/terminalinformation.sh" mhg chg
+  184  hg book
+  185  hg pull inofficemain
+  186  hg update
+  187  hg book -f mainline
+  188  hg update -C objc64
+  189  hg help merge
+  190  hg merge tip
+  191  vim  .hg/hgrc 
+  192  hg merge tip
+  193  cd external/OpenFeint
+  194  hg pull ssh://hg@192.168.192.25/external/OpenFeint
+  195  hg update
+  196  cd ..
+  197  cd ..
+  198  hg update -C objc64
+  199  hg merge tip
+  200  hg diff
+  201  hg commit -m "resyncd/merged objc64 branch with mainline"
+  202  hg book
+  203  hg update -C mainline
+  204  hg update -C f7983f03352b
+  205  hg book -f mainline
+  206  hg update -C mainline
+  207  hg book
+  208  hg paths
+  209  hg pull inofficemain
+  210  hg update -C tip
+  211  hg book -f mainline
+  212  hg update -C objc64
+  213  hg paths
+  214  hg books
+  215  hg book
+  216  ls -l
+  217  ls -l
+  218  /Applications/CoronaSDK.2012.821/Corona\ Terminal ; exit;
+  219  lipo -info /Users/ewing/Library/Developer/Xcode/DerivedData/ratatouille-cftyfvrxruldteecdauhjqddzlng/Build/Products/Release-iphoneos/app_sign 
+  220  cd /Users/ewing/Library/Developer/Xcode/DerivedData/app\_sign\-gafcuxaankvywzemuzhlqxogglnf/Build/Products/Debug; clear
+  221  lipo -info app_sign
+  222  cp app_sign app_sign64
+  223  cp app_sign64 ~/Library/Developer/Xcode/DerivedData/ratatouille-cftyfvrxruldteecdauhjqddzlng/Build/Products/Debug-iphoneos
+  224  cd /Volumes/CoronaLuaCocoa/CoronaLuaCocoa64Resize/platform/test; clear
+  225  ls -l
+  226  rm assets2
+  227  ln -s ../../../leveleditor/remy/ levels
+  228  ls -l
+  229  cd /Volumes/CoronaClean3; clear
+  230  hg clone ssh://hg@192.168.192.25/projects/simulatorhome
+  231  ls -l
+  232  cd simulatorhome/
+  233  ls
+  234  ./buildAndCopy.sh 
+  235  ./buildAndCopy.sh homescreen/ /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen/ /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  236  ./buildAndCopy.sh demo /Volumes/CoronaWork6/CoronaWork6/platform/resources/demo/ /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  237  ./buildAndCopy.sh homescreen/ /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen/ /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  238  ./buildAndCopy.sh homescreen/ /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  239  ./buildAndCopy.sh homescreen /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  240  ls
+  241  cd homescreen/
+  242  ls
+  243  cd ProjectDir/
+  244  ls
+  245  ./buildAndCopy.sh . /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  246  ./buildAndCopy.sh /Volumes/CoronaClean3/simulatorhome/homescreen/ProjectDir /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  247  cd ..
+  248  ls
+  249  cd ..
+  250  ./buildAndCopy.sh /Volumes/CoronaClean3/simulatorhome/homescreen/ProjectDir /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  251  cd homescreen/
+  252  ls
+  253  cd ProjectDir/
+  254  ls
+  255  cd templates/
+  256  ls
+  257  cd storyboard/
+  258  ls
+  259  less scenetemplate.lua 
+  260  cd ..
+  261  cd ..
+  262  cd ..
+  263  cd ..
+  264  ./buildAndCopy.sh /Volumes/CoronaClean3/simulatorhome/homescreen/ProjectDir /Volumes/CoronaWork6/CoronaWork6/platform/resources/homescreen /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  265  ./buildAndCopy.sh /Volumes/CoronaClean3/simulatorhome/demo/ProjectDir /Volumes/CoronaWork6/CoronaWork6/platform/resources/demo /Volumes/CoronaWork6/CoronaWork6/bin/mac
+  266  cd ../HG/lua32bit_bytecode/
+  267  gvim src/lundump.c 
+  268  ls
+  269  cd src
+  270  ls
+  271  grep luaU_header *
+  272  gvim lundump.h 
+  273  grep Instruction *
+  274  gvim lobject.h
+  275  gvim llimits.h 
+  276  grep lu_int32 *
+  277  gvim lstate.h 
+  278  grep LUAI_UINT32 *
+  279  gvim luaconf.h 
+  280  hg status
+  281  make macosx
+  282  cd ../test
+  283  ../src/luac -o hello.lu hello.lua 
+  284  ../src/luac -o life.lu life.lua
+  285  diff hello.lu ../../lua5basetest32/test/hello.lu
+  286  sdiff hello.lu ../../lua5basetest32/test/hello.lu
+  287  opendiff hello.lu ../../lua5basetest32/test/hello.lu
+  288  ../src/lua ../../lua5basetest32/test/hello.lu
+  289  ../src/lua ../../lua5basetest32/test/life.lu
+  290  ls -l
+  291  ../src/lua ../../lua5basetest/test/life.lu
+  292  opendiff hello.lu ../../lua5basetest32/test/hello.lu
+  293  ../src/lua hello.lu
+  294  ../src/lua hello.lu
+  295  ../src/lua ../../lua5basetest/test/life.lu
+  296  ../src/lua ../../lua5basetest32/test/life.lu
+  297  ../src/lua ./life.lu
+  298  ../src/lua ./life.lu
+  299  ../src/lua ./life.lu
+  300  open .
+  301  ../src/lua life.lua 
+  302  cd ../src
+  303  grep LUAC_HEADERSIZE *
+  304  gvim lundump.h 
+  305  hg status
+  306  hg diff
+  307  ls -l
+  308  cd ../test/
+  309  touch empty.lua
+  310  ../src/luac -o empty_mod.lu empty.lua 
+  311  diff empty_mod.lu ../../lua5basetest32/test/empty.lu
+  312  cd ../src
+  313  grep LUAC_HEADERSIZE *
+  314  gvim lundump.h 
+  315  grep LUA_SIGNATURE *
+  316  gvim lua.h 
+  317  gvim ldump.c 
+  318  grep LUA_SIGNATURE *
+  319  grep LUA_FORMAT *
+  320  grep LUAI_FORMAT *
+  321  grep LUAC_FORMAT *
+  322  gvim lundump.h
+  323  cd ..
+  324  make clean
+  325  make macosx
+  326  cd test/
+  327  ls
+  328  ../src/luac -o empty_mod.lu empty.lua 
+  329  ../src/luac -o hello_mod.lu hello.lua 
+  330  ../src/luac -o life_mod.lu life.lua 
+  331  diff hello_mod.lu ../../lua5basetest32/test/hello.lu
+  332  ../src/lua hello_mod.lu 
+  333  ../src/lua life_mod.lu 
+  334  ls -l
+  335  ls -l
+  336  ls -l
+  337  ls -l
+  338  ../src/lua empty.lu
+  339  ../src/lua empty_mod.lu 
+  340  ../src/lua ../../lua5basetest/test/hello.lu
+  341  ../src/lua ../../lua5basetest32/test/hello.lu
+  342  ../src/lua ../../lua5basetest32/test/hello.lu
+  343  ../src/lua ../../lua5basetest32/test/hello.lu
+  344  ../src/lua ../../lua5basetest32/test/
+  345  hg status
+  346  hg diff
+  347  diff life_mod.lu ../../lua5basetest32/test/life.lu
+  348  diff life_mod.lu ../../lua5basetest32/test/life.lu
+  349  ../src/lua ../../lua5basetest32/test/life.lu
+  350  cd ../src
+  351  grep Instruction *
+  352  gvim llimits.h 
+  353  grep luaU_header *
+  354  ls -l
+  355  hg status
+  356  hg status
+  357  hg commit
+  358  cd ..
+  359  hg clone . ssh://hg@192.168.192.25/lua/lua32bit_bytecode
+  360  ls -l
+  361  cd ..
+  362  ls
+  363  cd lua_coronafork/
+  364  hg log
+  365  hg pull ../lua32bit_bytecode/
+  366  hg merge
+  367  hg commit -m "Merged 32-bit bytecode patch with mainline"
+  368  hg paths
+  369  hg push server
+  370  hg pull server
+  371  hg merge
+  372  hg commit -m "Merged 32-bit bytecode patch with mainline"
+  373  hg push server
+  374  ls -l
+  375  ls -l
+  376  ls -l
+  377  cd src
+  378  cd ..
+  379  ls
+  380  cd src
+  381  ls
+  382  cd ..
+  383  ls -l
+  384  cd doc
+  385  ls -l
+  386  cd ..
+  387  ls
+  388  ls -l
+  389  open .
+  390  ls -l
+  391  cd ..
+  392  ls
+  393  cd ..
+  394  ls
+  395  cd GIT/
+  396  ls
+  397  cd ..
+  398  ls
+  399  cd HG
+  400  kls
+  401  ls
+  402  cd ..
+  403  ls
+  404  cd HG
+  405  ls
+  406  cd lua_coronafork/
+  407  ls
+  408  hg log
+  409  ls -l
+  410  ls -l
+  411  cd ..
+  412  ls
+  413  cd lua5_history/
+  414  ls
+  415  hg log -l 2
+  416  cd ..
+  417  hg clone lua5_history/ lua32bit_bytecode
+  418  cd lua32bit_bytecode/
+  419  cd ..
+  420  hg clone lua5_history/ lua5basetest
+  421  cd lua5basetest/
+  422  make
+  423  make macosx
+  424  cd test
+  425  ../src/luac -o hello.lu hello.lua 
+  426  ../src/luac -o life.lu life.lua 
+  427  ls -l
+  428  cd ..
+  429  hg clone lua5basetest32
+  430  hg clone lua5basetest/ lua5basetest32
+  431  cd lua5basetest32/
+  432  ls
+  433  cd src
+  434  ls
+  435  cd ..
+  436  ls
+  437  gvim Makefile 
+  438  gvim src/Makefile 
+  439  make
+  440  make macosx
+  441  make macosx
+  442  ls
+  443  cd test
+  444  ls
+  445  ../src/luac hello.lua 
+  446  ls -
+  447  ../src/lua luac
+  448  ../src/lua life.lua 
+  449  ls -l
+  450  ../src/lua luac.out 
+  451  ../src/luac 
+  452  ../src/luac life.lua -o life.lu
+  453  ../src/luac -o life.lu life.lua 
+  454  ../src/luac -o hello.lu hello.lu
+  455  ../src/luac -o hello.lu hello.lua
+  456  ls -l
+  457  open .
+  458  less hello.lua
+  459  ls
+  460  touch empty.lua
+  461  ../src/luac -o empty.lu empty.lu
+  462  ../src/luac -o empty.lu empty.lua 
+  463  ls -l
+  464  less empty.lua
+  465  less empty.lu
+  466  lipo -info ../src/luac
+  467  /Applications/CoronaSDK.2012.821/Corona\ Terminal ; exit;
+  468  /Applications/CoronaSDK.2012.821/Corona\ Terminal ; exit;
+  469  cd /Users/ewing/Library/Developer/Xcode/DerivedData/ratatouille\-dwkjhdyzjigrqpfsxveynorygrow/Build/Products/Debug\-iphoneos; clear
+  470  cd /Users/ewing/Library/Developer/Xcode/DerivedData/ratatouille\-gdgfzneygzblbqfhhuetnxsmyznl/Build/Products/Debug\-iphoneos; clear
+  471  ls
+  472  diff rttplayer.app/resource.car ~/Desktop/BUILD/HelloWorld32_821.app/resource.car 
+  473  ./app_sign 
+  474  ls rttplayer.app
+  475  ls
+  476  cd /Users/ewing/Library/Developer/Xcode/DerivedData/SDL\_sound\-efuofatspezrzweachhgznufyoti/Build/Products/Release/SDL\_sound\.framework; clear
+  477  ls
+  478  lipo -info SDL_sound 
+  479  cd Source/
+  480  ls
+  481  cd SDL_sound
+  482  ls
+  483  cd PBProjects
+  484  ls
+  485  open SDL_sound.xcodeproj/
+  486  cd /Users/ewing/Library/Developer/Xcode/DerivedData/ratatouille\-asynovhhsovrwadjqbshliuzubkt/Build/Products/Debug; clear
+  487  cd Corona\ Simulator.app
+  488  cd Contents/MacOS/
+  489  otool -L Corona\ Simulator 
+  490  cd Corona\ Simulator Corona\ Simulator 
+  491  ls
+  492  cd ..
+  493  cd Frameworks/
+  494  ls
+  495  cd SDL_ALmixer.framework/
+  496  ls
+  497  otool -L SDL_ALmixer 
+  498  cd Versions/A/Frameworks/
+  499  otool -L SDL.framework/SDL 
+  500  otool -L SDL_sound.framework/SDL_sound 
+  501  ls
+  502  gvim output2
+  503  less output2
+  504  python bench.py
+  505  gvim output_51
+  506  gvim bench.py 
+  507  ls -l
+  508  history
+  509  history | grep clang
+  510  ls
+  511  gvim README 
+  512  python make_chart_data.py < output_51 | python make_html.py
+  513  cp charts.html charts_51.html
+  514  open charts_51.html 
+  515  ls -l
+  516  sudo su
+  517  ls
+  518  sudo su
+  519  otool -L /usr/local/lib/libLuaHashMap.dylib 
+  520  ls
+  521  gvim Makefile 
+  522  rm build/LuaHashMap 
+  523  gcc -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap -framework lua src/LuaHashMap.c -o build/LuaHashMap
+  524  rm build/LuaHashMap 
+  525  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap -framework lua src/LuaHashMap.c -o build/LuaHashMap
+  526  ls
+  527  ls build/
+  528  python bench.py
+  529  python bench.py
+  530  gvim bench.py 
+  531  python bench.py
+  532  ls
+  533  cp output output_52
+  534  less output_52 
+  535  gvim output_52
+  536  cp output_10k output_10k_52
+  537  gvim output_10k_52 
+  538  gvim output_52 
+  539  gvim make_chart_data.py 
+  540  python make_chart_data.py < output_10k_52 | python make_html.py
+  541  open charts.html 
+  542  history
+  543    525  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap -framework lua src/LuaHashMap.c -o build/LuaHashMap
+  544  clang -O2 -I/usr/local/include -I/usr/local/include/luajit-2.0 -lLuaHashMapJIT -llibluajit-51 src/LuaHashMap.c -o build/LuaHashMapJIT
+  545  clang -O2 -I/usr/local/include -I/usr/local/include/luajit-2.0 -lLuaHashMapJIT -lluajit-51 src/LuaHashMap.c -o build/LuaHashMapJIT
+  546  ls build/
+  547  otool -L build/LuaHashMapJIT 
+  548  gvim bench.py 
+  549  ls -l
+  550  cd bench.py 
+  551  cd build/
+  552  ls
+  553  otool -L LuaHashMap
+  554  mv LuaHashMap LuaHashMap52
+  555  cd ..
+  556  cp charts.html charts_52.html
+  557  python bench.py 
+  558  gvim output_jit
+  559  ls
+  560  cp output_10k_52 output_all
+  561  gvim output_all 
+  562  gvim make_chart_data.py 
+  563  gvim output_51 
+  564  gvim output_10k
+  565  gvim output2 
+  566  ls -l
+  567  gvim output
+  568  gvim output2 
+  569  open .
+  570  python make_chart_data.py < output_all | python make_html.py
+  571  python make_chart_data.py < output_all | python make_html.py
+  572  cp charts.html charts_all.html
+  573  open charts_all.html 
+  574  ls build/
+  575  ls
+  576  perl -v
+  577  ls -l
+  578  cd src
+  579  ls
+  580  gvim perl_hash.c
+  581  cd ..
+  582  gvim Makefile 
+  583  clang  -O2 -lm `perl -MExtUtils::Embed -e ccopts` src/perl_hash.c -o build/perl_hash `perl -MExtUtils::Embed -e ldopts` 
+  584  `perl -MExtUtils::Embed -e ccopts`
+  585  echo `perl -MExtUtils::Embed -e ccopts`
+  586  ls build/
+  587  ls -l
+  588  ls -l
+  589  open .
+  590  open .
+  591  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap -framework lua src/LuaHashMap.c -o build/LuaHashMap51
+  592  cd build/
+  593  ls
+  594  otool LuaHashMap51
+  595  otool -L LuaHashMap51
+  596  cd ..
+  597  gvim bench.py 
+  598  gvim make_chart_data.py 
+  599  perl -v
+  600  ls -l
+  601  cd build/
+  602  ls
+  603  rm LuaHashMap*
+  604  cd ..
+  605  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap -framework lua src/LuaHashMap.c -o build/LuaHashMap51
+  606  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap51 -framework lua src/LuaHashMap.c -o build/LuaHashMap51
+  607  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap52 -framework lua src/LuaHashMap.c -o build/LuaHashMap52
+  608  rm build/LuaHashMap51
+  609  clang -O2 -I/usr/local/include -I/Library/Frameworks/lua.framework/Headers -lLuaHashMap51 -framework lua src/LuaHashMap.c -o build/LuaHashMap51
+  610  history | grep clang
+  611  clang -O2 -I/usr/local/include -I/usr/local/include/luajit-2.0 -lLuaHashMapJIT -lluajit-51 src/LuaHashMap.c -o build/LuaHashMapJIT
+  612  ls build/
+  613  cd build/
+  614  otool -L LuaHashMap51
+  615  otool -L LuaHashMap52
+  616  otool -L LuaHashMapJIT 
+  617  cd ..
+  618  python bench.py 
+  619  gvim bench.py 
+  620  gvim bench.py 
+  621  python bench.py 
+  622   gvim output_all10k
+  623  ./build/perl_hash 10 delete
+  624  ./build/perl_hash 10 delete > foo
+  625  ./build/perl_hash 10 delete > foo
+  626  ./build/perl_hash 1 delete > foo
+  627  ./build/perl_hash 1 delete 
+  628  ./build/LuaHashMap51 1 delete
+  629  ./build/perl_hash 1 delete 2> stderr
+  630  ./build/perl_hash 1 delete 2> trap_stderr
+  631  ./build/perl_hash 1 delete 2> trap_stderr 1>capture_stdout
+  632* less trap_stderr qq
+  633  less capture_stdout 
+  634  ./build/perl_hash 1 delete 2> trap_stderr 
+  635  less trap_stderr 
+  636  ./build/perl_hash 1 delete
+  637  ./build/perl_hash 10 delete
+  638  ./build/perl_hash 10 delete 2> trap_stderr 1>capture_stdout
+  639  less trap_stderr 
+  640  less capture_stdout 
+  641  python bench.py 2> trap_stderr
+  642  history > my_history

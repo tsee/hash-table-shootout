@@ -1,13 +1,13 @@
 import sys, os, subprocess, signal
 
 programs = [
-	'LuaHashMap51',
-	'LuaHashMap52',
-    'stl_unordered_map',
-	'stl_unordered_map_string',
-    'perl_hash',
-    'python_dict',
-	'ruby_hash',
+#	'LuaHashMap51',
+#	'LuaHashMap52',
+#	'LuaHashMapJIT',
+#   'stl_unordered_map',
+#    'perl_hash',
+#    'python_dict',
+#	'ruby_hash',
 	'tcl_hash',
 ]
 #
@@ -22,8 +22,8 @@ programs = [
 
 minkeys  =  2*1000*1000
 maxkeys  = 32*1000*1000
-interval =  4*1000*1000
-best_out_of = 3
+interval =  2*1000*1000
+best_out_of = 2
 
 # for the final run, use this:
 #minkeys  =  2*1000*1000
@@ -39,7 +39,8 @@ outfile = open('output', 'w')
 if len(sys.argv) > 1:
     benchtypes = sys.argv[1:]
 else:
-   benchtypes = ('sequential', 'random', 'delete', 'sequentialstring', 'randomstring', 'deletestring')
+#   benchtypes = ('sequential', 'random', 'delete', 'sequentialstring', 'randomstring', 'deletestring')
+    benchtypes = ('delete')
 #    benchtypes = ('sequentialstring', 'randomstring')
 #    benchtypes = ('randomstring', 'deletestring')
 

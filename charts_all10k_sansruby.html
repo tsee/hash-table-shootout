@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"delete-runtime": [{"data": [[10000000, 1.282303], [20000000, 2.548308], [30000000, 3.869917]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 0.977731], [20000000, 1.995325], [30000000, 2.801925]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 0.977731], [20000000, 1.995325], [30000000, 2.801925]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 0.528219], [20000000, 1.053632], [30000000, 1.589808]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 0.528219], [20000000, 1.053632], [30000000, 1.589808]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 0.528219], [20000000, 1.053632], [30000000, 1.589808]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "deletestring-runtime": [{"data": [[10000000, 4.249219], [20000000, 8.452978], [30000000, 13.13663]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 6.5976], [20000000, 13.332599], [30000000, 18.744522]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 6.5976], [20000000, 13.332599], [30000000, 18.744522]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 8.489204], [20000000, 17.910011], [30000000, 28.691586]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 8.489204], [20000000, 17.910011], [30000000, 28.691586]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 8.489204], [20000000, 17.910011], [30000000, 28.691586]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "randomstring-runtime": [{"data": [[10000000, 7.429029], [20000000, 14.742408], [30000000, 20.485578]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 16.331641], [20000000, 35.418507], [30000000, 63.197932]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 17.599776], [20000000, 35.470595], [30000000, 47.050033]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 25.70148], [20000000, 54.895043], [30000000, 68.710665]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 22.996345], [20000000, 50.834591], [30000000, 65.499708]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 3.429044], [20000000, 6.821175], [30000000, 10.322026]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "random-runtime": [{"data": [[10000000, 8.031196], [20000000, 16.9864], [30000000, 21.010601]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 5.747138], [20000000, 12.409611], [30000000, 22.525526]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 13.289891], [20000000, 29.191641], [30000000, 37.546614]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 7.739666], [20000000, 16.979684], [30000000, 21.94852]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 8.307777], [20000000, 17.904342], [30000000, 22.484592]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 0.099516], [20000000, 0.19933], [30000000, 0.302357]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "sequentialstring-runtime": [{"data": [[10000000, 6.767931], [20000000, 13.988894], [30000000, 19.206925]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 12.236897], [20000000, 25.92463], [30000000, 43.967594]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 16.861023], [20000000, 33.919457], [30000000, 45.428593]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 26.230404], [20000000, 55.029107], [30000000, 70.64001]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 22.398456], [20000000, 48.08609], [30000000, 61.904147]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 3.157717], [20000000, 6.307341], [30000000, 9.482881]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "sequentialstring-memory": [{"data": [[10000000, 3262693376], [20000000, 3898396672], [30000000, 4386017280]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 4349865984], [20000000, 5805559808], [30000000, 8067268608]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 3923017728], [20000000, 5218832384], [30000000, 6112223232]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 3952984064], [20000000, 5408456704], [30000000, 6058573824]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 3785392128], [20000000, 5240864768], [30000000, 5890981888]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 2655203328], [20000000, 2817740800], [30000000, 2980270080]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "sequential-runtime": [{"data": [[10000000, 1.833334], [20000000, 3.684354], [30000000, 4.776523]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 1.878115], [20000000, 3.77436], [30000000, 6.841234]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 12.903135], [20000000, 28.747572], [30000000, 36.503403]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 0.794997], [20000000, 1.670473], [30000000, 2.07885]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 0.715695], [20000000, 1.443389], [30000000, 1.868624]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 0.041911], [20000000, 0.083727], [30000000, 0.125601]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}], "sequential-memory": [{"data": [[10000000, 3100164096], [20000000, 3573338112], [30000000, 3898396672]], "label": "Apple clang version 3.1 (tags/Apple/clang-318.0.58) (based on LLVM 3.1svn) std::tr1::unordered_map"}, {"data": [[10000000, 3343237120], [20000000, 3992313856], [30000000, 5043003392]], "label": "Python 2.7.1 (C API) dict"}, {"data": [[10000000, 3760472064], [20000000, 4893741056], [30000000, 5624635392]], "label": "Perl 5.12.3 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[10000000, 2761945088], [20000000, 3030380544], [30000000, 3030380544]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 2761961472], [20000000, 3030396928], [30000000, 3030396928]], "label": "Lua 5.2.1rc2 (C API) table (via LuaHashMap)"}, {"data": [[10000000, 2493710336], [20000000, 2493710336], [30000000, 2493710336]], "label": "LuaJIT 2.0.0-beta10 (C API) table (via LuaHashMap)"}]}
+
+
+    $(function () {
+        $.plot($("#sequential-runtime"), chart_data['sequential-runtime'], runtime_settings);
+        $.plot($("#random-runtime"),     chart_data['random-runtime'],     runtime_settings);
+        $.plot($("#delete-runtime"),     chart_data['delete-runtime'],     runtime_settings);
+        $.plot($("#sequential-memory"),  chart_data['sequential-memory'],  memory_settings);
+        $.plot($("#sequentialstring-runtime"), chart_data['sequentialstring-runtime'], runtime_settings);
+        $.plot($("#randomstring-runtime"),     chart_data['randomstring-runtime'],     runtime_settings);
+        $.plot($("#deletestring-runtime"),     chart_data['deletestring-runtime'],     runtime_settings);
+        $.plot($("#sequentialstring-memory"),  chart_data['sequentialstring-memory'],  memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 700px;
+        height: 230px;
+    }
+    div.xaxis-title {
+        width: 700px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Sequential Inserts: Execution Time (integers)</h3>
+<div class="chart" id="sequential-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Sequential Inserts: Execution Time (strings)</h3>
+<div class="chart" id="sequentialstring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Random Inserts: Execution Time (integers)</h3>
+<div class="chart" id="random-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Inserts: Execution Time (strings)</h3>
+<div class="chart" id="randomstring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Deletes: Execution Time (integers)</h3>
+<div class="chart" id="delete-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Deletes: Execution Time (strings)</h3>
+<div class="chart" id="deletestring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Memory Usage (integers)</h3>
+<div class="chart" id="sequential-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Memory Usage (strings)</h3>
+<div class="chart" id="sequentialstring-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+</body>
+</html>

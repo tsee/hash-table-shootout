@@ -64,4 +64,4 @@ int ExistsInStrHash(const char* key)
 }
 
 
-#include "template.c"
+#include "template_orig.c"

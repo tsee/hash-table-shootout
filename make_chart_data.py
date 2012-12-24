@@ -38,27 +38,38 @@ for line in lines:
         by_benchtype.setdefault("%s-memory"  % benchtype, {}).setdefault(program, []).append([nkeys, nbytes])
 
 proper_names = {
-    'boost_unordered_map': 'Boost 1.38 unordered_map',
-    'stl_unordered_map': 'GCC 4.4 std::unordered_map',
-    'google_sparse_hash_map': 'Google sparsehash 1.5.2 sparse_hash_map',
-    'google_dense_hash_map': 'Google sparsehash 1.5.2 dense_hash_map',
-    'glib_hash_table': 'Glib 2.22 GHashTable',
-    'qt_qhash': 'Qt 4.5 QHash',
-    'python_dict': 'Python 2.6 (C API) dict',
-    'ruby_hash': 'Ruby 1.9 (C API) Hash',
+#    'boost_unordered_map': 'Boost 1.38 unordered_map',
+    'stl_unordered_map': 'llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]',
+	'stl_unordered_map_string': 'llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]',
+#    'google_sparse_hash_map': 'Google sparsehash 1.5.2 sparse_hash_map',
+#    'google_dense_hash_map': 'Google sparsehash 1.5.2 dense_hash_map',
+#    'glib_hash_table': 'Glib 2.22 GHashTable',
+#    'qt_qhash': 'Qt 4.5 QHash',
+    'python_dict': 'Python 2.7.2 (C API) dict',
+    'perl_hash': 'Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash',
+    'ruby_hash': 'Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash',
+    'tcl_hash': 'Tcl 8.5 (C API) hash',
+    'LuaHashMap51': 'Lua 5.1.5 (C API) table (via LuaHashMap)',
+    'LuaHashMap52': 'Lua 5.2.1 (C API) table (via LuaHashMap)',
 }
 
+#   'google_sparse_hash_map',
+#   'google_dense_hash_map',
+#    'boost_unordered_map',
+#    'glib_hash_table',
+#    'qt_qhash',
 # do them in the desired order to make the legend not overlap the chart data
 # too much
 program_slugs = [
-    'google_sparse_hash_map',
-    'google_dense_hash_map',
     'stl_unordered_map',
-    'boost_unordered_map',
+    'stl_unordered_map_string',
     'python_dict',
-    'ruby_hash',
-    'glib_hash_table',
-    'qt_qhash',
+#    'ruby_hash',
+    'perl_hash',
+    'tcl_hash',
+    'LuaHashMap51',
+    'LuaHashMap52',
+#    'LuaHashMapJIT',
 ]
 
 chart_data = {}

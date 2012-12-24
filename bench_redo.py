@@ -3,11 +3,12 @@ import sys, os, subprocess, signal
 programs = [
 	'LuaHashMap51',
 	'LuaHashMap52',
+#	'LuaHashMapJIT',
     'stl_unordered_map',
 	'stl_unordered_map_string',
     'perl_hash',
     'python_dict',
-	'ruby_hash',
+#	'ruby_hash',
 	'tcl_hash',
 ]
 #
@@ -23,7 +24,7 @@ programs = [
 minkeys  =  2*1000*1000
 maxkeys  = 32*1000*1000
 interval =  4*1000*1000
-best_out_of = 3
+best_out_of = 2
 
 # for the final run, use this:
 #minkeys  =  2*1000*1000
