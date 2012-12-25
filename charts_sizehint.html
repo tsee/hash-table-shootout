@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"delete-runtime": [{"data": [[2000000, 0.103439], [6000000, 0.293845], [10000000, 0.526477], [14000000, 0.809101], [18000000, 1.207217], [22000000, 1.582173], [26000000, 1.955788], [30000000, 2.331632]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 0.110673], [6000000, 0.298119], [10000000, 0.520833], [14000000, 0.809374], [18000000, 1.047918], [22000000, 1.393414], [26000000, 1.727674], [30000000, 2.081761]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "deletestring-runtime": [{"data": [[2000000, 1.181348], [6000000, 3.698033], [10000000, 6.395929], [14000000, 9.752738], [18000000, 12.27784], [22000000, 15.695177], [26000000, 19.401189], [30000000, 23.267241]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 1.17323], [6000000, 3.684083], [10000000, 6.357227], [14000000, 9.778138], [18000000, 12.272191], [22000000, 16.19625], [26000000, 19.886551], [30000000, 23.912075]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "randomstring-runtime": [{"data": [[2000000, 1.705556], [6000000, 5.868822], [10000000, 10.701599], [14000000, 14.717308], [18000000, 21.093017], [22000000, 25.075073], [26000000, 29.238352], [30000000, 33.942068]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 1.716016], [6000000, 5.905322], [10000000, 10.74318], [14000000, 14.862128], [18000000, 21.168034], [22000000, 25.130563], [26000000, 29.547707], [30000000, 34.292937]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "random-runtime": [{"data": [[2000000, 0.46511], [6000000, 1.411322], [10000000, 2.484146], [14000000, 4.025869], [18000000, 4.962656], [22000000, 6.498599], [26000000, 8.27512], [30000000, 10.202761]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 0.481658], [6000000, 1.432856], [10000000, 2.557365], [14000000, 4.038107], [18000000, 5.084457], [22000000, 6.564715], [26000000, 8.200615], [30000000, 10.035472]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "sequentialstring-runtime": [{"data": [[2000000, 1.718775], [6000000, 5.895563], [10000000, 10.73947], [14000000, 14.644218], [18000000, 21.120975], [22000000, 25.063294], [26000000, 29.340383], [30000000, 33.993567]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 1.725296], [6000000, 5.976956], [10000000, 10.843133], [14000000, 14.872219], [18000000, 21.204483], [22000000, 25.395047], [26000000, 29.391639], [30000000, 34.262331]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "sequentialstring-memory": [{"data": [[2000000, 2673623040], [6000000, 3155976192], [10000000, 3754721280], [14000000, 3949756416], [18000000, 4950114304], [22000000, 5145149440], [26000000, 5340217344], [30000000, 5535252480]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2656985088], [6000000, 3139338240], [10000000, 3738083328], [14000000, 3933118464], [18000000, 4933476352], [22000000, 5128511488], [26000000, 5323579392], [30000000, 5518614528]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "sequential-runtime": [{"data": [[2000000, 0.098982], [6000000, 0.319854], [10000000, 0.552806], [14000000, 0.697049], [18000000, 1.026449], [22000000, 1.170375], [26000000, 1.313788], [30000000, 1.455131]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 0.093049], [6000000, 0.297853], [10000000, 0.515342], [14000000, 0.64286], [18000000, 0.955187], [22000000, 1.08764], [26000000, 1.215008], [30000000, 1.348784]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}], "sequential-memory": [{"data": [[2000000, 2556854272], [6000000, 2721517568], [10000000, 2759733248], [14000000, 2759733248], [18000000, 3028168704], [22000000, 3028168704], [26000000, 3028168704], [30000000, 3028168704]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2556862464], [6000000, 2721525760], [10000000, 2759741440], [14000000, 2759741440], [18000000, 3028176896], [22000000, 3028176896], [26000000, 3028176896], [30000000, 3028176896]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}]}
+
+
+    $(function () {
+        $.plot($("#sequential-runtime"), chart_data['sequential-runtime'], runtime_settings);
+        $.plot($("#random-runtime"),     chart_data['random-runtime'],     runtime_settings);
+        $.plot($("#delete-runtime"),     chart_data['delete-runtime'],     runtime_settings);
+        $.plot($("#sequential-memory"),  chart_data['sequential-memory'],  memory_settings);
+        $.plot($("#sequentialstring-runtime"), chart_data['sequentialstring-runtime'], runtime_settings);
+        $.plot($("#randomstring-runtime"),     chart_data['randomstring-runtime'],     runtime_settings);
+        $.plot($("#deletestring-runtime"),     chart_data['deletestring-runtime'],     runtime_settings);
+        $.plot($("#sequentialstring-memory"),  chart_data['sequentialstring-memory'],  memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 1000px;
+        height: 600px;
+    }
+    div.xaxis-title {
+        width: 1000px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Sequential Inserts: Execution Time (integers)</h3>
+<div class="chart" id="sequential-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Sequential Inserts: Execution Time (strings)</h3>
+<div class="chart" id="sequentialstring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Random Inserts: Execution Time (integers)</h3>
+<div class="chart" id="random-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Inserts: Execution Time (strings)</h3>
+<div class="chart" id="randomstring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Deletes: Execution Time (integers)</h3>
+<div class="chart" id="delete-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Deletes: Execution Time (strings)</h3>
+<div class="chart" id="deletestring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Memory Usage (integers)</h3>
+<div class="chart" id="sequential-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Memory Usage (strings)</h3>
+<div class="chart" id="sequentialstring-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+</body>
+</html>

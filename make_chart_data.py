@@ -47,7 +47,7 @@ proper_names = {
 #    'qt_qhash': 'Qt 4.5 QHash',
     'python_dict': 'Python 2.7.2 (C API) dict',
     'perl_hash': 'Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash',
-    'ruby_hash': 'Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash',
+#    'ruby_hash': 'Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash',
     'tcl_hash': 'Tcl 8.5 (C API) hash',
     'LuaHashMap51': 'Lua 5.1.5 (C API) table (via LuaHashMap)',
     'LuaHashMap52': 'Lua 5.2.1 (C API) table (via LuaHashMap)',
