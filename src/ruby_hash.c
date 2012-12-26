@@ -1,8 +1,10 @@
 #include <ruby.h>
 VALUE hash;
-#define SETUP \
+#define SETUP(num_keys) do { \
     ruby_init(); \
-    hash = rb_hash_new();
+    hash = rb_hash_new(); \
+	} while(0)
+
 #define INSERT_INT_INTO_HASH(key, value) do { \
         VALUE rb_int_key = INT2NUM(key); /* leak */ \
         VALUE rb_int_value = INT2NUM(value); /* leak */ \
@@ -22,6 +24,11 @@ VALUE hash;
         rb_hash_delete(hash, rb_str_key); \
     } while(0)
 
+static inline const char* InsertStrIntoHash(const char* key, int value)
+{
+	INSERT_STR_INTO_HASH(key, value);
+	return key;
+}
 
 int ExistsInIntHash(int key)
 {
@@ -31,13 +38,13 @@ int ExistsInIntHash(int key)
 	if(ret_val != Qnil)
 	{
 		
-		fprintf(stderr, "found key: %d\n", key);
-		fprintf(stderr, " ret_val NUM2INT: %d\n", NUM2INT(ret_val));
+//		fprintf(stderr, "found key: %d\n", key);
+//		fprintf(stderr, " ret_val NUM2INT: %d\n", NUM2INT(ret_val));
 		return 1;
 	}
 	else
 	{
-		fprintf(stderr, "not found key: %d\n", key);
+//		fprintf(stderr, "not found key: %d\n", key);
 		return 0;
 	}
 }
@@ -49,15 +56,15 @@ int ExistsInStrHash(const char* key)
 	
 	if(ret_val != Qnil)
 	{
-		fprintf(stderr, "found key: %s", key);
-		fprintf(stderr, " ret_val NUM2INT: %d\n", NUM2INT(ret_val));
+//		fprintf(stderr, "found key: %s", key);
+//		fprintf(stderr, " ret_val NUM2INT: %d\n", NUM2INT(ret_val));
 
 		
 		return 1;
 	}
 	else
 	{
-		fprintf(stderr, "not found key: %s", key);
+//		fprintf(stderr, "not found key: %s", key);
 		
 		return 0;
 	}

@@ -2,7 +2,7 @@
 #include <perl.h>
 HV* hash = NULL;
 static PerlInterpreter *my_perl;
-#define SETUP \
+#define SETUP(num_keys) do { \
     PERL_SYS_INIT3(NULL,NULL,NULL); \
     /*PerlInterpreter *my_perl = perl_alloc();*/ \
     my_perl = perl_alloc(); \
@@ -10,7 +10,8 @@ static PerlInterpreter *my_perl;
     hash = newHV(); \
     SV* ival = newSViv(0); \
     SV* ikey = newSViv(0); \
-    SV* skey = newSVpv("", 0);
+    SV* skey = newSVpv("", 0); \
+	} while(0)	
 #define INSERT_INT_INTO_HASH(key, value) do { \
 		SV* sv_key = newSViv(key); \
 		SV* sv_val = newSViv(value); \
@@ -62,6 +63,11 @@ static PerlInterpreter *my_perl;
 		} \
     } while(0)
 
+static inline const char* InsertStrIntoHash(const char* key, int value)
+{
+	INSERT_STR_INTO_HASH(key, value);
+	return key;
+}
 
 int ExistsInIntHash(int key)
 {

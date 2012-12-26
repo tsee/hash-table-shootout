@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"randomstringgetgood-runtime": [{"data": [[2000000, 1.69056], [6000000, 5.532874], [10000000, 9.7516], [14000000, 14.573902], [18000000, 19.791394], [22000000, 23.879075], [26000000, 29.13479], [30000000, 34.466531]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 1.549702], [6000000, 5.473526], [10000000, 9.773794], [14000000, 14.874903], [18000000, 18.792204], [22000000, 23.87422], [26000000, 29.335911], [30000000, 35.067057]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 1.150483], [6000000, 3.747339], [10000000, 7.865028], [14000000, 9.233603], [18000000, 12.856074], [22000000, 16.815457], [26000000, 21.085042], [30000000, 25.721178]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 1.325634], [6000000, 4.720739], [10000000, 8.61733], [14000000, 12.65052], [18000000, 16.983009], [22000000, 21.47713], [26000000, 25.288295], [30000000, 29.857302]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.684581], [6000000, 5.790519], [10000000, 10.428163], [14000000, 15.977031], [18000000, 20.586936], [22000000, 26.163161], [26000000, 32.08085], [30000000, 38.210387]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.247594], [6000000, 4.261313], [10000000, 7.614283], [14000000, 11.702382], [18000000, 14.814891], [22000000, 18.973414], [26000000, 23.347464], [30000000, 27.833026]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with internalization optimization"}], "randomstringgetgood-memory": [{"data": [[2000000, 2799259648], [6000000, 3454922752], [10000000, 4147638272], [14000000, 4695568384], [18000000, 5242462208], [22000000, 5937508352], [26000000, 6483353600], [30000000, 7028137984]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2801995776], [6000000, 3540250624], [10000000, 4346290176], [14000000, 4765671424], [18000000, 5988372480], [22000000, 6406541312], [26000000, 6824722432], [30000000, 7241121792]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2742173696], [6000000, 3253420032], [10000000, 3739508736], [14000000, 4351406080], [18000000, 4836454400], [22000000, 5314129920], [26000000, 5791817728], [30000000, 6269493248]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 3102896128], [6000000, 4328607744], [10000000, 4748763136], [14000000, 5973811200], [18000000, 6393319424], [22000000, 6812012544], [26000000, 8841199616], [30000000, 9259364352]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2844254208], [6000000, 3609247744], [10000000, 4457103360], [14000000, 5036523520], [18000000, 6025920512], [22000000, 6537150464], [26000000, 7139618816], [30000000, 7750533120]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2801995776], [6000000, 3540250624], [10000000, 4346290176], [14000000, 4782055424], [18000000, 5988634624], [22000000, 6406803456], [26000000, 6824722432], [30000000, 7258423296]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with internalization optimization"}]}
+
+
+    $(function () {
+        $.plot($("#randomstringgetgood-runtime"), chart_data['randomstringgetgood-runtime'], runtime_settings);
+        $.plot($("#randomstringgetbad-runtime"), chart_data['randomstringgetbad-runtime'], runtime_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 1000px;
+        height: 600px;
+    }
+    div.xaxis-title {
+        width: 1000px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Random Access Existing Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringgetgood-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Non-Existent Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringgetbad-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Existing Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringgetgood-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Non-Existent Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringgetbad-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+</body>
+</html>

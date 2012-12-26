@@ -1,7 +1,9 @@
 #include "LuaHashMap.h"
 LuaHashMap* hash = NULL;
-#define SETUP \
-	hash = LuaHashMap_Create();
+#define SETUP(num_keys) do { \
+	hash = LuaHashMap_CreateWithSizeHints(0,num_keys); \
+	} while(0)
+
 #define INSERT_INT_INTO_HASH(key, value) do { \
 		LuaHashMap_SetValueIntegerForKeyInteger(hash, value, key); \
     } while(0)
@@ -15,6 +17,11 @@ LuaHashMap* hash = NULL;
 		LuaHashMap_RemoveKeyString(hash, key); \
     } while(0)
 
+static inline const char* InsertStrIntoHash(const char* key, int value)
+{
+	return LuaHashMap_SetValueIntegerForKeyString(hash, value, key);
+
+}
 
 int ExistsInIntHash(int key)
 {

@@ -1,0 +1,500 @@
+   22  hg push bitbucket
+   23  hg commit -m "More documentation tweaks."
+   24  gvim LuaHashMap.h 
+   25  gvim LuaHashMap.c 
+   26  less /Library/Frameworks/lua.framework/Headers/lua.h
+   27  less /Library/Frameworks/lua.framework/Headers/lua.h
+   28  less /Library/Frameworks/lua.framework/Headers/lauxlib.h 
+   29  hg st
+   30  hg commit
+   31  hg push assembla
+   32  hg push assembla
+   33  hg push bitbucket
+   34  cd ..
+   35  cd Logger
+   36  ls
+   37  cd clogger/
+   38  gvim Logger.h 
+   39  ls
+   40  cd ..
+   41  cd ..
+   42  ls
+   43  cd LoggerCallback
+   44  ls
+   45  cd clogger/
+   46  ls
+   47  gvim Logger.h 
+   48  cd ..
+   49  ls
+   50  cd objclogger/
+   51  ls
+   52  less LoggerObjC.m 
+   53  cd ..
+   54  ls
+   55  ls
+   56  ls doc
+   57  cp -R doc ../LuaHashMapShared/
+   58  gvim doc/Doxyfile.in 
+   59  ls
+   60  ls
+   61  cd ..
+   62  ls
+   63  cd BUILD/
+   64  cd ..
+   65  mkdir BUILD51
+   66  cd BUILD51
+   67  ccmake ..
+   68  make
+   69  ccmake ..
+   70  ls
+   71  cp libLuaHashMap.a libLuaHashMap51.a 
+   72  sudo cp libLuaHashMap51.a /usr/local/lib/
+   73  cd ..
+   74  ls
+   75  sudo cp LuaHashMap.h /usr/local/include/lua51/
+   76  sudo cp LuaHashMap.h /usr/local/include/lua52/
+   77  mkdir BUILD52
+   78  cd BUILD52
+   79  ccmake ..
+   80  make VERBOSE=1
+   81  ls
+   82  cp libLuaHashMap.a libLuaHashMap52.a 
+   83  sudo libLuaHashMap52.a /usr/local/lib/
+   84  sudo cp libLuaHashMap52.a /usr/local/lib/
+   85  cd /Volumes/DataPartition/Users/ewing/Downloads/hash\-table\-shootout\ 2; clear
+   86  ls
+   87  cd src
+   88  ls
+   89  gvim LuaHashMap.c 
+   90  gvim template.c 
+   91  gvim template_nomalloc.c 
+   92  ls
+   93  open .
+   94  cd /Volumes/DataPartition/Users/ewing/Downloads/hash\-table\-shootout\_new; clear
+   95  ls
+   96  gvim Makefile 
+   97  ls
+   98  cd build
+   99  ls
+  100  rm *
+  101  rm -rf *
+  102  ls
+  103  cd ..
+  104  clang++ -O3  src/stl_unordered_map.cc -o build/stl_unordered_map
+  105  rm build/stl_unordered_map 
+  106  clang++ -O3  src/stl_unordered_map.cc -o build/stl_unordered_map
+  107  clang++ -O3 src/stl_unordered_map_string.cc -o build/stl_unordered_map_string
+  108  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  109  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  110  clang  -O3 -lm `perl -MExtUtils::Embed -e ccopts` src/perl_hash.c -o build/perl_hash `perl -MExtUtils::Embed -e ldopts`
+  111  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  112  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 src/LuaHashMap.c -o build/LuaHashMap52
+  113  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  114  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  115  cd build
+  116  ls
+  117  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  118  cd ..
+  119  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  120  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  121  cd /Volumes/DataPartition/Users/ewing/Downloads/hash\-table\-shootout\_new; clear
+  122  cd src
+  123  ls
+  124  grep template.c *
+  125  mv template.c template_orig.c
+  126  ln -s template_nomalloc.c template.c
+  127  cd ..
+  128  cd ..ls
+  129  ls
+  130  gvim bench.py 
+  131  python bench.py 
+  132  ls -l
+  133  less output
+  134  cd src/
+  135  ls
+  136  less LuaHashMap.c
+  137  gvim LuaHashMap.c 
+  138  gvim template.c 
+  139  al/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  140  cd build
+  141  ls
+  142  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  143  cd ..
+  144  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  145  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  146  python bench.py 
+  147  gvim output
+  148  gvim console_output_first_all
+  149  cp output output_first_all
+  150  gvim output_first_all 
+  151  ls
+  152  open charts.html 
+  153  less make_chart_data.py 
+  154  less README 
+  155  less bench.py 
+  156  less make_chart_data.py 
+  157  gvim make_chart_data.py 
+  158  clang --version
+  159  python -version
+  160  python --version
+  161  perl --version
+  162  ruby --version
+  163  grep make_chart_data *
+  164  python make_chart_data.py < output | python make_html.py
+  165  ls
+  166  python make_chart_data.py < output | python make_html.py
+  167  open charts.html 
+  168  rm charts.html 
+  169  python make_chart_data.py < output | python make_html.py
+  170  rm charts.html 
+  171  python make_chart_data.py < output | python make_html.py
+  172  ls charts.html 
+  173  open charts.html 
+  174  ls
+  175  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  176  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  177  ls
+  178  less bench.py 
+  179  ./build/ruby_hash 1000000 sequentialstring
+  180  ./build/ruby_hash 1000000 sequential
+  181  ./build/ruby_hash_orig 1000000 sequentialstring
+  182  ./build/ruby_hash_orig 1000000 sequentialstring 
+  183  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  184  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  185  ./build/ruby_hash_orig 1000000 sequentialstring 
+  186  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  187  ./build/ruby_hash_orig 1000000 sequentialstring 
+  188  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  189  ./build/ruby_hash_orig 1000000 sequentialstring 
+  190  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  191  ./build/ruby_hash_orig 1000000 sequentialstring 
+  192  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  193  ./build/ruby_hash_orig 1000000 sequentialstring 
+  194  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  195  ./build/ruby_hash_orig 1000000 sequentialstring 
+  196  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  197  ./build/ruby_hash_orig 1000000 sequentialstring 
+  198  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  199  ./build/ruby_hash_orig 1000000 sequentialstring 
+  200  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  201  ./build/ruby_hash_orig 1000000 sequentialstring 
+  202  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  203  ./build/ruby_hash_orig 1000000 sequentialstring 
+  204  man strdup
+  205  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  206  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  207  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  208  ./build/ruby_hash_orig 1000000 sequentialstring 
+  209  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  210  ./build/ruby_hash_orig 1000000 sequentialstring 
+  211  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  212  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  213  ./build/ruby_hash_orig 1000000 sequentialstring 
+  214  cp console_output_first_all console_output_first_int
+  215  cp console_output_first_all console_output_first_str
+  216  gvim console_output_first_int 
+  217  cp output_first_all output_first_int
+  218  cp output_first_all output_first_str
+  219  gvim output_first_str 
+  220  gvim output_first_int 
+  221  history
+  222  python make_chart_data.py < output_first_str | python make_html.py
+  223  cp charts.html charts_first_str.py
+  224  gvim make_chart_data.py 
+  225  python make_chart_data.py < output_first_int | python make_html.py
+  226  cp charts.html charts_first_int.html
+  227  mv charts_first_str.py charts_first_str.html
+  228  open charts_first_int.html 
+  229  open charts_first_str.html 
+  230  gvim output
+  231  gvim make_chart_data.py 
+  232  gvim make_html.py 
+  233  open charts_first_int.html 
+  234  gvim make_html.py 
+  235  cp charts-template.html charts-template-int.html
+  236  cp charts-template.html charts-template-str.html
+  237  gvim charts-template-int.html 
+  238  gvim make_html.py 
+  239  cp make_html.py make_html_int.py 
+  240  cp make_html.py make_html_str.py 
+  241  gvim make_html_int.py 
+  242  gvim make_html_str.py 
+  243  gvim charts-template-str.html 
+  244  python make_chart_data.py < output_first_int | python make_html_int.py
+  245  cp charts.html charts_first_int.html 
+  246  python make_chart_data.py < output_first_str | python make_html_str.py
+  247  cp charts.html charts_first_str.html 
+  248  open charts_first_int.html 
+  249  open charts_first_str.html 
+  250  git status
+  251  git add .
+  252  git commit
+  253  ls
+  254  rm -rf build_second_run/
+  255  cd build/
+  256  ls
+  257  rm ruby_hash_orig 
+  258  cp ruby_hash_bak ruby_hash
+  259  rm ruby_hash_bak 
+  260  cd ..
+  261  ls -l
+  262  git add build/
+  263  git -f add build/
+  264  git  add build/ -f
+  265  git commit
+  266  git remove build_secondrun
+  267  git unadd build_secondrun
+  268  git help add
+  269  cd history
+  270   history
+  271  ls
+  272  cd src/
+  273  ls
+  274  gvim template.c 
+  275  gvim LuaHashMap.c 
+  276  less /usr/local/include/lua52/LuaHashMap.h 
+  277  history
+  278  gvim src/LuaHashMap.c 
+  279  cd ..
+  280  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  281  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  282  gvim bench.py 
+  283  python bench.py 
+  284  history
+  285  python make_chart_data.py < output | python make_html.py
+  286  gvim make_chart_data.py 
+  287  python make_chart_data.py < output | python make_html.py
+  288  python make_chart_data.py < output | python make_html.py
+  289  open charts.html 
+  290  cp output output_sizehint
+  291  gvim src/template.c 
+  292  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  293  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  294  python bench.py 
+  295  cp output output_sizehint2x
+  296  gvim bench.py 
+  297  python make_chart_data.py < output | python make_html.py
+  298  open charts.html 
+  299  cp charts.html charts_sizehint2x.html
+  300  open charts_sizehint2x.html 
+  301  python make_chart_data.py < output_sizehint | python make_html.py
+  302  cp charts.html charts_sizehint.html
+  303  open charts.html 
+  304  gvim src/LuaHashMap.c 
+  305  gvim src/template.c 
+  306  gvim bench.py 
+  307  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  308  clang -O3 -I/usr/local/include/lua51 -lLuaHashMap51 -llua51 src/LuaHashMap.c -o build/LuaHashMap51
+  309  python bench.py 
+  310  gvim console_output_sizehint
+  311  ls
+  312  cp output output_sizehint_all
+  313  gvim output_sizehint_all 
+  314  gvim output_sizehint_int
+  315  gvim output_sizehint_str
+  316  cp output_sizehint_all output_sizehint_str
+  317  cp output_sizehint_all output_sizehint_int
+  318  gvim output_sizehint_str 
+  319  gvim output_sizehint_int 
+  320  gvim make_chart_data.py 
+  321  python make_chart_data.py < output_sizehint_int | python make_html_int.py
+  322  cp charts.html charts_sizehint_int.html
+  323  python make_chart_data.py < output_sizehint_str | python make_html_str.py
+  324  cp charts.html charts_sizehint_str.html
+  325  open charts_sizehint_str.html 
+  326  open charts_sizehint_int.html 
+  327  less output_sizehint_str 
+  328  git add -f .
+  329  ls
+  330  history
+  331   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  332   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  333   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  334   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  335  less bench.py 
+  336  ./build/LuaHashMap52 10000
+  337  ./build/LuaHashMap52 100000 randomgetgood
+  338   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  339  ./build/LuaHashMap52 100000 randomgetgood
+  340  ./build/LuaHashMap52 100000 randomstringgetgood
+  341   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  342  ./build/LuaHashMap52 100000 randomstringgetgood
+  343   clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  344  ./build/LuaHashMap52 100000 randomstringgetgood
+  345  history
+  346  history | grep clang
+  347  clang++ -O3 src/stl_unordered_map_string.cc -o build/stl_unordered_map_string
+  348  ./build/stl_unordered_map 100000 randomstringgetgood
+  349  ./build/stl_unordered_map 100000 randomgetgood
+  350  clang  -O3 -lm `perl -MExtUtils::Embed -e ccopts` src/perl_hash.c -o build/perl_hash `perl -MExtUtils::Embed -e ldopts`
+  351  ./build/perl_hash 100000 randomgetgood
+  352  ./build/perl_hash 100000 randomstringgetgood
+  353  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  354  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  355  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  356  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  357  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  358  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  359  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  360  ./build/python_dict 100000 randomstringgetgood
+  361  ./build/python_dict 100000 randomgetgood
+  362  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash_orig.c -o build/ruby_hash_orig
+  363  ./build/ruby_hash 100000 randomgetgood
+  364  ./build/ruby_hash 100000 randomstringgetgood
+  365  ./build/ruby_hash 1000000 randomstringgetgood
+  366  ./build/ruby_hash 1000000 randomgetgood
+  367  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  368  ./build/ruby_hash 1000000 randomgetgood
+  369  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  370  ./build/ruby_hash 100000 randomgetgood
+  371  ./build/ruby_hash 100000 randomstringgetgood
+  372  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  373  ./build/ruby_hash 100000 randomstringgetgood
+  374  465
+  375  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  376  ./build/tcl_hash 100000 randomstringgetgood
+  377  ./build/tcl_hash 100000 randomgetgood
+  378  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  379  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  380  ./build/tcl_hash 100000 randomgetgood
+  381  ./build/tcl_hash 100000 randomstringgetgood
+  382  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  383  ./build/tcl_hash 100000 randomstringgetgood
+  384  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  385  ./build/tcl_hash 100000 randomstringgetgood
+  386  ./build/tcl_hash 100000 randomstringgetgood
+  387  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  388  ./build/tcl_hash 100000 randomstringgetgood
+  389  ./build/tcl_hash 100000 randomstringgetgood
+  390  ./build/tcl_hash 100000 randomstringgetgood
+  391  ./build/tcl_hash 100000 randomstringgetgood
+  392  ./build/tcl_hash 100000 randomstringgetgood
+  393  lldb ./build/tcl_hash 100000 randomstringgetgood
+  394  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  395  lldb ./build/tcl_hash 100000 randomstringgetgood
+  396  clang -O0 -g -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  397  clang -O0 -g -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  398  clang -O0 -g -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  399  lldb ./build/tcl_hash 100000 randomstringgetgood
+  400  cd ..
+  401  ls
+  402  less my_history 
+  403  less my_history 
+  404  grep tcl *
+  405  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  406  clang -O0 -g -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  407  ./build/tcl_hash 10000 randomstringgetgood
+  408  ./build/tcl_hash 10000 randomstringgetgood
+  409  ./build/tcl_hash 10000 randomstringgetgood
+  410  ./build/tcl_hash 10000 randomstringgetgood
+  411  ./build/tcl_hash 10000 randomstringgetgood
+  412  ./build/tcl_hash 10000 randomstringgetgood
+  413  ./build/tcl_hash 10000 randomstringgetgood
+  414  ./build/tcl_hash 10000 randomstringgetgood
+  415  ./build/tcl_hash 10000 randomstringgetgood
+  416  ./build/tcl_hash 10000 randomstringgetgood
+  417  ./build/tcl_hash 10000 randomstringgetgood
+  418  ./build/tcl_hash 10000 randomstringgetgood
+  419  ./build/tcl_hash 10000 randomstringgetgood
+  420  lldb ./build/tcl_hash 10000 randomstringgetgood
+  421  ls
+  422  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  423  ./build/tcl_hash 10000 randomstringgetgood
+  424  ./build/tcl_hash 10000 randomstringgetgood
+  425  ./build/tcl_hash 10000 randomstringgetgood
+  426  ./build/tcl_hash 10000 randomstringgetgood
+  427  ./build/tcl_hash 10000 randomstringgetgood
+  428  ./build/tcl_hash 10000 randomstringgetgood
+  429  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  430  ./build/tcl_hash 10000 randomstringgetgood
+  431  ./build/tcl_hash 10000 randomstringgetgood
+  432  ./build/tcl_hash 10000 randomstringgetgood
+  433  ./build/tcl_hash 10000 randomstringgetgood
+  434  ./build/tcl_hash 100000 randomstringgetgood
+  435  ./build/tcl_hash 100000 randomstringgetgood
+  436  ./build/tcl_hash 100000 randomstringgetgood
+  437  ./build/tcl_hash 100000 randomstringgetgood
+  438  clang -O2 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  439  ./build/tcl_hash 100000 randomstringgetgood
+  440  ./build/tcl_hash 100000 randomstringgetgood
+  441  clang -O0 -g -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  442  ./build/tcl_hash 100000 randomstringgetgood
+  443  lldb ./build/tcl_hash 10000 randomstringgetgood
+  444  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  445  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  446  ./build/tcl_hash 100000 randomstringgetgood
+  447  lldb ./build/tcl_hash 10000 randomstringgetgood
+  448  lldb ./build/tcl_hash 1000000 randomstringgetgood
+  449  lldb ./build/tcl_hash 100000000 randomstringgetgood
+  450  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  451  lldb ./build/tcl_hash 100000000 randomstringgetgood
+  452  ./build/tcl_hash 100000 randomstringgetgood
+  453  ./build/tcl_hash 100000 randomstringgetgood
+  454  ./build/tcl_hash 100000 randomstringgetgood
+  455  ./build/tcl_hash 100000 randomstringgetgood
+  456  ./build/tcl_hash 100000 randomstringgetgood
+  457  ./build/tcl_hash 100000 randomstringgetgood
+  458  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  459  grep clang++
+  460  grep clang++ *
+  461  clang++ -O3 src/stl_unordered_map_string.cc -o build/stl_unordered_map_string 
+  462  ./build/stl_unordered_map 100000 randomstringetgood
+  463  ./build/stl_unordered_map 1000000 randomstringetgood
+  464  ./build/stl_unordered_map_string 100000 randomstringetgood
+  465  ./build/stl_unordered_map_string 1000000 randomstringetgood
+  466  ./build/stl_unordered_map_string 10000000 randomstringetgood
+  467  clang++ -O3 src/stl_unordered_map_string.cc -o build/stl_unordered_map_string 
+  468  ./build/stl_unordered_map_string 10000000 randomstringgetgood
+  469  ls
+  470  cp bench.py bench_getint.py
+  471  clang++ -O3 src/stl_unordered_map_string.cc -o build/stl_unordered_map_string 
+  472  gvim Makefile 
+  473  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  474  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  475  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  476  clang  -O3 -lm `perl -MExtUtils::Embed -e ccopts` src/perl_hash.c -o build/perl_hash `perl -MExtUtils::Embed -e ldopts` 
+  477  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  478  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  479  ls
+  480  gvim bench_getint.py 
+  481  cp bench_getint.py bench_get_int.py
+  482  cp bench_getint.py bench_get_string.py
+  483  cp bench_getint.py bench_get_stringinternalized.py
+  484  cp bench_getint.py bench_get_bad.py
+  485  cp bench_getint.py bench_get_string_bad.py
+  486  rm bench_getint.py 
+  487  gvim bench_get_string.py 
+  488  gvim bench_get_stringinternalized.py
+  489  gvim bench_get_bad.py
+  490  gvim bench_get_string_bad.py 
+  491  history
+  492  clang++ -O3 src/stl_unordered_map_string.cc -o build/stl_unordered_map_string 
+  493  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  494  clang -O3 -framework Tcl src/tcl_hash.c -o build/tcl_hash
+  495  clang  -O3 -lm `perl -MExtUtils::Embed -e ccopts` src/perl_hash.c -o build/perl_hash `perl -MExtUtils::Embed -e ldopts` 
+  496  clang -O3 -I/System/Library/Frameworks/Ruby.framework/Headers -framework Ruby src/ruby_hash.c -o build/ruby_hash
+  497  clang -O3  -I/System/Library/Frameworks/Python.framework/Headers src/python_dict.c -o build/python_dict -framework Python
+  498  gvim run_access.sh
+  499  ls *.py
+  500  python
+  501  ls
+  502  chmod +x run_access.sh 
+  503  ./run_access.sh 
+  504  history
+  505  clang -O3 -I/usr/local/include/lua52 -lLuaHashMap52 -llua52 src/LuaHashMap.c -o build/LuaHashMap52
+  506  python bench_get_stringinternalized.py 
+  507  less output
+  508  ./build/LuaHashMap52 100000 randomstringgetgood
+  509  gvim bench_get_stringinternalized.py 
+  510  gvim bench_get_string.py 
+  511  python bench_get_stringinternalized.py 
+  512  python bench_get_stringinternalized.py 
+  513  python bench_get_string.py 
+  514  less output
+  515  python bench_get_string.py 
+  516  python bench_get_string.py 
+  517  python bench_get_string.py 
+  518  gvim bench_get_stringinternalized.py 
+  519  gvim bench_get_bad.py 
+  520  history
+  521  history > myhistory2

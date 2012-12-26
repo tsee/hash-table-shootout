@@ -1,9 +1,11 @@
 #include <Tcl/tcl.h>
 	Tcl_HashTable hash_int; 
 	Tcl_HashTable hash_str; 
-#define SETUP \
+#define SETUP(num_keys) do { \
 	Tcl_InitHashTable(&hash_int, TCL_ONE_WORD_KEYS); \
-	Tcl_InitHashTable(&hash_str, TCL_STRING_KEYS);
+	Tcl_InitHashTable(&hash_str, TCL_STRING_KEYS); \
+	} while(0)
+	
 #define INSERT_INT_INTO_HASH(key, value) do { \
 		Tcl_HashEntry* hash_entry; \
 		int new_val; \
@@ -40,6 +42,13 @@
 			Tcl_DeleteHashEntry(hash_entry); \
 		} \
     } while(0)
+
+	
+static inline const char* InsertStrIntoHash(const char* key, int value)
+{
+	INSERT_STR_INTO_HASH(key, value);
+	return key;
+}
 
 int ExistsInIntHash(int key)
 {

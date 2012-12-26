@@ -1,13 +1,14 @@
 #include <Python.h>
 typedef PyObject * hash_t;
 hash_t hash = NULL;
-#define SETUP \
+#define SETUP(num_keys) do { \
     Py_Initialize(); \
     hash = PyDict_New(); \
-    PyObject * py_int_value = PyInt_FromLong(0);
+	} while(0)
+	
 #define INSERT_INT_INTO_HASH(key, value) do { \
         PyObject * py_int_key = PyInt_FromLong(key); /* leak */ \
-        PyDict_SetItem(hash, py_int_key, py_int_value); \
+        PyDict_SetItem(hash, py_int_key, PyInt_FromLong(value)); \
         Py_DECREF(py_int_key); \
     } while(0)
 #define DELETE_INT_FROM_HASH(key) do { \
@@ -23,11 +24,17 @@ hash_t hash = NULL;
         Py_DECREF(py_int_key); \
     } while(0)
 #define INSERT_STR_INTO_HASH(key, value) do { \
-        PyDict_SetItemString(hash, key, py_int_value); \
+        PyDict_SetItemString(hash, key, PyInt_FromLong(value)); \
     } while(0)
 #define DELETE_STR_FROM_HASH(key) do { \
         PyDict_DelItemString(hash, key); \
     } while(0)
+
+static inline const char* InsertStrIntoHash(const char* key, int value)
+{
+	INSERT_STR_INTO_HASH(key, value);
+	return key;
+}
 
 
 int ExistsInIntHash(int key)

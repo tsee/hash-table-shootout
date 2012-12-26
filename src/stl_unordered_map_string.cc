@@ -6,12 +6,20 @@ typedef std::tr1::unordered_map<std::string, int64_t> str_hash_t;
 str_hash_t str_hash;
 hash_t hash;
 
-#define SETUP
+#define SETUP(num_keys) do { \
+	} while(0)
+
+
 #define INSERT_INT_INTO_HASH(key, value) hash.insert(hash_t::value_type(key, value))
 #define DELETE_INT_FROM_HASH(key) hash.erase(key);
 #define INSERT_STR_INTO_HASH(key, value) str_hash.insert(str_hash_t::value_type(std::string(key), value))
 #define DELETE_STR_FROM_HASH(key) str_hash.erase(std::string(key));
 
+static inline const char* InsertStrIntoHash(const char* key, int value)
+{
+	INSERT_STR_INTO_HASH(key, value);
+	return key;
+}
 
 int ExistsInIntHash(int key)
 {

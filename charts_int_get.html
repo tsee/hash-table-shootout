@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"randomgetgood-memory": [{"data": [[2000000, 2604720128], [6000000, 2872360960], [10000000, 3178082304], [14000000, 3339055104], [18000000, 3499003904], [22000000, 3808075776], [26000000, 3968000000], [30000000, 4127924224]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2591199232], [6000000, 2874855424], [10000000, 3242397696], [14000000, 3274395648], [18000000, 3977490432], [22000000, 4009488384], [26000000, 4041486336], [30000000, 4073484288]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2645155840], [6000000, 2962374656], [10000000, 3254423552], [14000000, 3672301568], [18000000, 3964358656], [22000000, 4248014848], [26000000, 4531671040], [30000000, 4815327232]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 2759667712], [6000000, 3291844608], [10000000, 3422408704], [14000000, 3954585600], [18000000, 4084109312], [22000000, 4212576256], [26000000, 5147414528], [30000000, 5275881472]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2880405504], [6000000, 3709337600], [10000000, 4587556864], [14000000, 5264433152], [18000000, 6292619264], [22000000, 6884556800], [26000000, 7567728640], [30000000, 8242503680]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2581843968], [6000000, 2751217664], [10000000, 2930028544], [14000000, 3124559872], [18000000, 3285557248], [22000000, 3445481472], [26000000, 3672518656], [30000000, 3832442880]], "label": "Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash"}], "randomgetgood-runtime": [{"data": [[2000000, 0.46387], [6000000, 1.437829], [10000000, 2.506053], [14000000, 3.814124], [18000000, 5.298719], [22000000, 6.425315], [26000000, 7.956548], [30000000, 9.613997]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 0.53326], [6000000, 1.809902], [10000000, 3.274551], [14000000, 5.397632], [18000000, 6.455745], [22000000, 8.632048], [26000000, 11.226031], [30000000, 14.000101]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 0.56522], [6000000, 1.772823], [10000000, 3.714375], [14000000, 4.242977], [18000000, 5.911094], [22000000, 7.695917], [26000000, 9.683858], [30000000, 11.914226]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 0.922591], [6000000, 3.107896], [10000000, 5.59271], [14000000, 8.308145], [18000000, 11.120025], [22000000, 13.912566], [26000000, 16.748407], [30000000, 19.864365]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.868084], [6000000, 6.16479], [10000000, 10.656123], [14000000, 15.995505], [18000000, 20.345917], [22000000, 25.624159], [26000000, 31.483983], [30000000, 37.375667]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.003722], [6000000, 4.031502], [10000000, 6.357434], [14000000, 7.952713], [18000000, 11.932674], [22000000, 16.719487], [26000000, 16.126663], [30000000, 20.153656]], "label": "Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash"}], "randomgetbad-runtime": [{"data": [[2000000, 0.411605], [6000000, 1.230382], [10000000, 2.067466], [14000000, 3.331304], [18000000, 4.812314], [22000000, 5.233509], [26000000, 6.662188], [30000000, 8.180356]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 0.479933], [6000000, 1.483374], [10000000, 2.691985], [14000000, 4.607287], [18000000, 5.141618], [22000000, 7.193491], [26000000, 9.3737], [30000000, 12.302531]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 0.577249], [6000000, 1.709439], [10000000, 3.96286], [14000000, 3.681959], [18000000, 5.372679], [22000000, 7.324432], [26000000, 9.538669], [30000000, 12.034739]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 0.529567], [6000000, 1.5168], [10000000, 3.295168], [14000000, 4.340131], [18000000, 6.338208], [22000000, 8.852873], [26000000, 8.925897], [30000000, 11.03218]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.414418], [6000000, 4.398954], [10000000, 7.273601], [14000000, 11.447761], [18000000, 13.418625], [22000000, 17.567649], [26000000, 22.030957], [30000000, 27.044609]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.563897], [6000000, 6.549934], [10000000, 9.997025], [14000000, 11.77736], [18000000, 18.198686], [22000000, 26.376989], [26000000, 23.357313], [30000000, 30.003077]], "label": "Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash"}], "randomgetbad-memory": [{"data": [[2000000, 2604720128], [6000000, 2872360960], [10000000, 3178082304], [14000000, 3339055104], [18000000, 3499003904], [22000000, 3808075776], [26000000, 3968000000], [30000000, 4127924224]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2591199232], [6000000, 2874855424], [10000000, 3242397696], [14000000, 3274395648], [18000000, 3977490432], [22000000, 4009488384], [26000000, 4041486336], [30000000, 4073484288]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2645155840], [6000000, 2962374656], [10000000, 3254423552], [14000000, 3672301568], [18000000, 3964358656], [22000000, 4248014848], [26000000, 4531671040], [30000000, 4815327232]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 2759667712], [6000000, 3291844608], [10000000, 3422408704], [14000000, 3954585600], [18000000, 4084109312], [22000000, 4212576256], [26000000, 5147414528], [30000000, 5275881472]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2880405504], [6000000, 3709337600], [10000000, 4587556864], [14000000, 5264433152], [18000000, 6292619264], [22000000, 6884556800], [26000000, 7567728640], [30000000, 8242503680]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2581843968], [6000000, 2751217664], [10000000, 2930028544], [14000000, 3124559872], [18000000, 3285557248], [22000000, 3445481472], [26000000, 3672518656], [30000000, 3832442880]], "label": "Ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0] (C API) Hash"}]}
+
+
+    $(function () {
+        $.plot($("#randomgetgood-runtime"), chart_data['randomgetgood-runtime'], runtime_settings);
+        $.plot($("#randomgetbad-runtime"), chart_data['randomgetbad-runtime'], runtime_settings);
+        $.plot($("#randomgetgood-memory"), chart_data['randomgetgood-memory'], memory_settings);
+        $.plot($("#randomgetbad-memory"), chart_data['randomgetbad-memory'], memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 1000px;
+        height: 600px;
+    }
+    div.xaxis-title {
+        width: 1000px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Random Access Existing Key/Value Pairs: Execution Time (integers)</h3>
+<div class="chart" id="randomgetgood-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Non-Existent Key/Value Pairs: Execution Time (integers)</h3>
+<div class="chart" id="randomgetbad-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Existing Key/Value Pairs: Memory Usage (integers)</h3>
+<div class="chart" id="randomgetgood-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Random Access Non-Existent Key/Value Pairs: Memory Usage (integers)</h3>
+<div class="chart" id="randomgetbad-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+</body>
+</html>
+
