@@ -462,7 +462,7 @@ int main(int argc, char ** argv)
 
 			SetIntIntoHash(key, i);
 		}
-	}`
+	}
     else if(!strcmp(argv[2], "randomstringsetbest"))
     {
 //		fprintf(stderr, "ExistsInStrHash\n");
