@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"deletestring-runtime": [{"data": [[2000000, 1.415931], [6000000, 4.246611], [10000000, 7.021772], [14000000, 10.171329], [18000000, 12.901487], [22000000, 16.049303], [26000000, 19.185992], [30000000, 22.53641]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 1.177951], [6000000, 3.728322], [10000000, 6.61535], [14000000, 9.874558], [18000000, 12.423592], [22000000, 15.990633], [26000000, 19.495425], [30000000, 23.517831]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 0.450551], [6000000, 1.358392], [10000000, 2.318983], [14000000, 3.219219], [18000000, 4.161104], [22000000, 5.308074], [26000000, 6.123673], [30000000, 7.130237]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 0.870747], [6000000, 2.637897], [10000000, 4.898266], [14000000, 6.352585], [18000000, 8.642732], [22000000, 11.311837], [26000000, 11.663961], [30000000, 13.81824]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.579838], [6000000, 4.795591], [10000000, 7.902783], [14000000, 12.110771], [18000000, 14.757453], [22000000, 19.184065], [26000000, 23.8061], [30000000, 28.689526]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.187548], [6000000, 3.721429], [10000000, 6.439696], [14000000, 9.899386], [18000000, 12.441775], [22000000, 15.920141], [26000000, 19.625838], [30000000, 23.620862]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 0.356887], [6000000, 1.082157], [10000000, 1.806604], [14000000, 2.546015], [18000000, 3.283778], [22000000, 4.023729], [26000000, 4.755389], [30000000, 5.513001]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]"}], "randomstring-runtime": [{"data": [[2000000, 1.760843], [6000000, 6.502605], [10000000, 12.602807], [14000000, 14.987338], [18000000, 25.240947], [22000000, 27.661515], [26000000, 30.143042], [30000000, 32.713243]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 1.727878], [6000000, 5.95875], [10000000, 10.879119], [14000000, 14.919726], [18000000, 21.420134], [22000000, 25.395595], [26000000, 29.730379], [30000000, 34.546728]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 0.610021], [6000000, 1.906481], [10000000, 3.065965], [14000000, 4.67244], [18000000, 6.033852], [22000000, 7.304035], [26000000, 8.466778], [30000000, 9.716029]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 1.565027], [6000000, 5.79028], [10000000, 8.157547], [14000000, 13.200702], [18000000, 15.537111], [22000000, 18.466707], [26000000, 26.32025], [30000000, 28.633771]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.591443], [6000000, 5.411413], [10000000, 10.152949], [14000000, 13.25634], [18000000, 20.783671], [22000000, 23.955551], [26000000, 27.117711], [30000000, 30.389445]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.722451], [6000000, 5.942093], [10000000, 10.802425], [14000000, 14.833766], [18000000, 21.393463], [22000000, 25.383697], [26000000, 29.651584], [30000000, 34.262557]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 0.359566], [6000000, 1.10414], [10000000, 1.823502], [14000000, 2.585631], [18000000, 3.321839], [22000000, 4.080374], [26000000, 4.822342], [30000000, 5.557337]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]"}], "randomstring-memory": [{"data": [[2000000, 2654777344], [6000000, 3019399168], [10000000, 3423154176], [14000000, 3748212736], [18000000, 4221403136], [22000000, 4546461696], [26000000, 4871520256], [30000000, 5196644352]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2656985088], [6000000, 3139338240], [10000000, 3738083328], [14000000, 3933118464], [18000000, 4933476352], [22000000, 5128511488], [26000000, 5323579392], [30000000, 5518614528]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 2629148672], [6000000, 2914369536], [10000000, 3174420480], [14000000, 3568689152], [18000000, 3820351488], [22000000, 4080398336], [26000000, 4340445184], [30000000, 4592103424]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 2989674496], [6000000, 3990081536], [10000000, 4185247744], [14000000, 5185589248], [18000000, 5380886528], [22000000, 5576314880], [26000000, 7381962752], [30000000, 7577518080]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2732277760], [6000000, 3271258112], [10000000, 3894116352], [14000000, 4255895552], [18000000, 5012967424], [22000000, 5308665856], [26000000, 5688283136], [30000000, 6076260352]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2673623040], [6000000, 3155976192], [10000000, 3754721280], [14000000, 3949756416], [18000000, 4950114304], [22000000, 5145149440], [26000000, 5340217344], [30000000, 5535252480]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 2491142144], [6000000, 2491142144], [10000000, 2491142144], [14000000, 2491142144], [18000000, 2491142144], [22000000, 2491142144], [26000000, 2491142144], [30000000, 2491142144]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]"}], "sequentialstring-runtime": [{"data": [[2000000, 1.763854], [6000000, 6.592135], [10000000, 12.623064], [14000000, 15.092228], [18000000, 25.279133], [22000000, 27.6669], [26000000, 30.143869], [30000000, 32.681402]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 1.729678], [6000000, 5.968211], [10000000, 10.898929], [14000000, 14.89976], [18000000, 21.348176], [22000000, 25.508293], [26000000, 29.815024], [30000000, 34.414246]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 0.608314], [6000000, 1.873899], [10000000, 3.072249], [14000000, 4.713545], [18000000, 6.056227], [22000000, 7.364568], [26000000, 8.626434], [30000000, 9.811277]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 1.581611], [6000000, 5.7547], [10000000, 8.095491], [14000000, 13.134343], [18000000, 15.592989], [22000000, 18.563419], [26000000, 26.317395], [30000000, 28.652792]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.574917], [6000000, 5.436724], [10000000, 10.18907], [14000000, 13.211183], [18000000, 20.728887], [22000000, 23.658194], [26000000, 26.984167], [30000000, 30.466829]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.727813], [6000000, 5.943117], [10000000, 10.822954], [14000000, 14.80217], [18000000, 21.37232], [22000000, 25.341705], [26000000, 29.61068], [30000000, 34.30985]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 0.360376], [6000000, 1.089323], [10000000, 1.832785], [14000000, 2.577609], [18000000, 3.338641], [22000000, 4.069651], [26000000, 4.811446], [30000000, 5.560516]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]"}], "sequentialstring-memory": [{"data": [[2000000, 2654777344], [6000000, 3019399168], [10000000, 3423154176], [14000000, 3748212736], [18000000, 4221403136], [22000000, 4546461696], [26000000, 4871520256], [30000000, 5196644352]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2656985088], [6000000, 3139338240], [10000000, 3738083328], [14000000, 3933118464], [18000000, 4933476352], [22000000, 5128511488], [26000000, 5323579392], [30000000, 5518614528]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 2629148672], [6000000, 2914369536], [10000000, 3174420480], [14000000, 3568689152], [18000000, 3820351488], [22000000, 4080398336], [26000000, 4340445184], [30000000, 4592103424]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 2989674496], [6000000, 3990081536], [10000000, 4185247744], [14000000, 5185589248], [18000000, 5380886528], [22000000, 5576314880], [26000000, 7381962752], [30000000, 7577518080]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2732277760], [6000000, 3271258112], [10000000, 3894116352], [14000000, 4255895552], [18000000, 5012967424], [22000000, 5308665856], [26000000, 5688283136], [30000000, 6076260352]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2673623040], [6000000, 3155976192], [10000000, 3754721280], [14000000, 3949756416], [18000000, 4950114304], [22000000, 5145149440], [26000000, 5340217344], [30000000, 5535252480]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 2491142144], [6000000, 2491142144], [10000000, 2491142144], [14000000, 2491142144], [18000000, 2491142144], [22000000, 2491142144], [26000000, 2491142144], [30000000, 2491142144]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]"}], "deletestring-memory": [{"data": [[2000000, 2532093952], [6000000, 2637717504], [10000000, 2781425664], [14000000, 2781425664], [18000000, 2929557504], [22000000, 2929557504], [26000000, 2929557504], [30000000, 2929623040]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2656985088], [6000000, 3139338240], [10000000, 3738083328], [14000000, 3933118464], [18000000, 4933476352], [22000000, 5128511488], [26000000, 5323579392], [30000000, 5518614528]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 2629148672], [6000000, 2914369536], [10000000, 3174420480], [14000000, 3568689152], [18000000, 3820351488], [22000000, 4080398336], [26000000, 4340445184], [30000000, 4592103424]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 2700333056], [6000000, 3304378368], [10000000, 3304509440], [14000000, 4110012416], [18000000, 4110274560], [22000000, 4110471168], [26000000, 5721083904], [30000000, 5721604096]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2658103296], [6000000, 3034046464], [10000000, 3493871616], [14000000, 3693662208], [18000000, 4287700992], [22000000, 4420362240], [26000000, 4636946432], [30000000, 4861886464]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2673623040], [6000000, 3155976192], [10000000, 3754721280], [14000000, 3949756416], [18000000, 4950114304], [22000000, 5145149440], [26000000, 5340217344], [30000000, 5535252480]], "label": "Lua 5.1.5 (C API) table (via LuaHashMap) with size hint"}, {"data": [[2000000, 2491142144], [6000000, 2491142144], [10000000, 2491142144], [14000000, 2491142144], [18000000, 2491142144], [22000000, 2491142144], [26000000, 2491142144], [30000000, 2491142144]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [const char*]"}]}
+
+
+    $(function () {
+        $.plot($("#sequentialstring-runtime"), chart_data['sequentialstring-runtime'], runtime_settings);
+        $.plot($("#randomstring-runtime"),     chart_data['randomstring-runtime'],     runtime_settings);
+        $.plot($("#deletestring-runtime"),     chart_data['deletestring-runtime'],     runtime_settings);
+        $.plot($("#sequentialstring-memory"),  chart_data['sequentialstring-memory'],  memory_settings);
+        $.plot($("#randomstring-memory"),  chart_data['randomstring-memory'],  memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 960px;
+        height: 560px;
+    }
+    div.xaxis-title {
+        width: 960px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Sequential Inserts: Execution Time (strings)</h3>
+<div class="chart" id="sequentialstring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Inserts: Execution Time (strings)</h3>
+<div class="chart" id="randomstring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Deletes: Execution Time (strings)</h3>
+<div class="chart" id="deletestring-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Sequential Memory Usage (strings)</h3>
+<div class="chart" id="sequentialstring-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Memory Usage (strings)</h3>
+<div class="chart" id="randomstring-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+</body>
+</html>
