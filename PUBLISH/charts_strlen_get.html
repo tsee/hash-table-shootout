@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"randomstringlengthgetgood-runtime": [{"data": [[2000000, 1.713191], [6000000, 5.698568], [10000000, 10.128903], [14000000, 15.164644], [18000000, 20.58861], [22000000, 24.774728], [26000000, 30.014208], [30000000, 35.527748]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 1.704729], [6000000, 5.711145], [10000000, 10.153792], [14000000, 15.182039], [18000000, 20.534243], [22000000, 24.659755], [26000000, 29.948398], [30000000, 35.376995]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string] with length"}, {"data": [[2000000, 1.569966], [6000000, 5.582725], [10000000, 9.952242], [14000000, 15.089086], [18000000, 19.146345], [22000000, 24.315581], [26000000, 29.739468], [30000000, 35.44568]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 1.547228], [6000000, 5.547374], [10000000, 9.885383], [14000000, 14.936792], [18000000, 19.018017], [22000000, 24.205675], [26000000, 29.609441], [30000000, 35.14246]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with length"}, {"data": [[2000000, 1.722094], [6000000, 5.998002], [10000000, 10.835175], [14000000, 16.497075], [18000000, 21.273885], [22000000, 26.969629], [26000000, 32.861203], [30000000, 39.055184]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.723731], [6000000, 6.021525], [10000000, 10.893904], [14000000, 16.567377], [18000000, 21.308729], [22000000, 27.015754], [26000000, 32.95398], [30000000, 39.167226]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash with length"}], "randomstringlengthgetbad-runtime": [{"data": [[2000000, 1.399604], [6000000, 4.37754], [10000000, 7.502592], [14000000, 11.883627], [18000000, 16.879409], [22000000, 18.936431], [26000000, 23.535964], [30000000, 28.426594]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 1.397278], [6000000, 4.397095], [10000000, 7.568354], [14000000, 11.937231], [18000000, 16.91298], [22000000, 18.959453], [26000000, 23.497003], [30000000, 28.453807]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string] with length"}, {"data": [[2000000, 1.842581], [6000000, 7.193201], [10000000, 10.302661], [14000000, 18.557017], [18000000, 18.222989], [22000000, 32.322057], [26000000, 37.580372], [30000000, 42.844093]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 1.841468], [6000000, 7.223129], [10000000, 10.272389], [14000000, 18.424194], [18000000, 18.213711], [22000000, 32.230504], [26000000, 37.406429], [30000000, 42.790468]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with length"}, {"data": [[2000000, 0.887222], [6000000, 2.969947], [10000000, 5.221921], [14000000, 8.457359], [18000000, 10.191515], [22000000, 13.290798], [26000000, 16.665228], [30000000, 20.23037]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 1.054648], [6000000, 3.474557], [10000000, 6.079769], [14000000, 9.914911], [18000000, 11.770084], [22000000, 15.498301], [26000000, 19.564557], [30000000, 23.93736]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash with length"}], "randomstringlengthgetbad-memory": [{"data": [[2000000, 2847252480], [6000000, 3598925824], [10000000, 4387631104], [14000000, 5031571456], [18000000, 5674455040], [22000000, 6465511424], [26000000, 7107346432], [30000000, 7748141056]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2847252480], [6000000, 3598925824], [10000000, 4387631104], [14000000, 5031571456], [18000000, 5674455040], [22000000, 6465511424], [26000000, 7107346432], [30000000, 7748141056]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string] with length"}, {"data": [[2000000, 2945409024], [6000000, 3935928320], [10000000, 4893941760], [14000000, 5666856960], [18000000, 6975193088], [22000000, 7880687616], [26000000, 8517279744], [30000000, 9152831488]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2945409024], [6000000, 3935928320], [10000000, 4893941760], [14000000, 5666856960], [18000000, 6975586304], [22000000, 7880687616], [26000000, 8517017600], [30000000, 9152569344]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with length"}, {"data": [[2000000, 2892247040], [6000000, 3753250816], [10000000, 4697096192], [14000000, 5372526592], [18000000, 6457913344], [22000000, 7065153536], [26000000, 7763611648], [30000000, 8470536192]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2892247040], [6000000, 3753250816], [10000000, 4697096192], [14000000, 5372526592], [18000000, 6457913344], [22000000, 7065153536], [26000000, 7763611648], [30000000, 8470536192]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash with length"}], "randomstringlengthgetgood-memory": [{"data": [[2000000, 2847252480], [6000000, 3598925824], [10000000, 4387631104], [14000000, 5031571456], [18000000, 5674455040], [22000000, 6465511424], [26000000, 7107346432], [30000000, 7748141056]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string]"}, {"data": [[2000000, 2847252480], [6000000, 3598925824], [10000000, 4387631104], [14000000, 5031571456], [18000000, 5674455040], [22000000, 6465511424], [26000000, 7107346432], [30000000, 7748141056]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string] with length"}, {"data": [[2000000, 2849988608], [6000000, 3684253696], [10000000, 4586283008], [14000000, 5101674496], [18000000, 6420889600], [22000000, 6934544384], [26000000, 7515299840], [30000000, 7978426368]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap)"}, {"data": [[2000000, 2849988608], [6000000, 3684253696], [10000000, 4586151936], [14000000, 5101412352], [18000000, 6420889600], [22000000, 6934544384], [26000000, 7448715264], [30000000, 7961649152]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) with length"}, {"data": [[2000000, 2892247040], [6000000, 3753250816], [10000000, 4697096192], [14000000, 5372526592], [18000000, 6457913344], [22000000, 7065153536], [26000000, 7763611648], [30000000, 8470536192]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash"}, {"data": [[2000000, 2892247040], [6000000, 3753250816], [10000000, 4697096192], [14000000, 5372526592], [18000000, 6457913344], [22000000, 7065153536], [26000000, 7763611648], [30000000, 8470536192]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash with length"}]}
+
+
+    $(function () {
+        $.plot($("#randomstringlengthgetgood-runtime"), chart_data['randomstringlengthgetgood-runtime'], runtime_settings);
+        $.plot($("#randomstringlengthgetbad-runtime"), chart_data['randomstringlengthgetbad-runtime'], runtime_settings);
+        $.plot($("#randomstringlengthgetgood-memory"), chart_data['randomstringlengthgetgood-memory'], memory_settings);
+        $.plot($("#randomstringlengthgetbad-memory"), chart_data['randomstringlengthgetbad-memory'], memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 960px;
+        height: 560px;
+    }
+    div.xaxis-title {
+        width: 960px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Random Access Existing Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringlengthgetgood-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Non-Existent Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringlengthgetbad-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Existing Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringlengthgetgood-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random Access Non-Existent Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringlengthgetbad-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+</body>
+</html>

@@ -53,10 +53,10 @@
     __CHART_DATA_GOES_HERE__
 
     $(function () {
-        $.plot($("#randomgetgood-runtime"), chart_data['randomgetgood-runtime'], runtime_settings);
-        $.plot($("#randomgetbad-runtime"), chart_data['randomgetbad-runtime'], runtime_settings);
-        $.plot($("#randomgetgood-memory"), chart_data['randomgetgood-memory'], memory_settings);
-        $.plot($("#randomgetbad-memory"), chart_data['randomgetbad-memory'], memory_settings);
+        $.plot($("#randomstringlengthgetgood-runtime"), chart_data['randomstringlengthgetgood-runtime'], runtime_settings);
+        $.plot($("#randomstringlengthgetbad-runtime"), chart_data['randomstringlengthgetbad-runtime'], runtime_settings);
+        $.plot($("#randomstringlengthgetgood-memory"), chart_data['randomstringlengthgetgood-memory'], memory_settings);
+        $.plot($("#randomstringlengthgetbad-memory"), chart_data['randomstringlengthgetbad-memory'], memory_settings);
     });
 </script>
 
@@ -76,24 +76,22 @@
 </style>
 
 
-<h3>Random Access Existing Key/Value Pairs: Execution Time (integers)</h3>
-<div class="chart" id="randomgetgood-runtime"></div>
+<h3>Random Access Existing Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringlengthgetgood-runtime"></div>
 <div class="xaxis-title">number of entries in hash table</div>
 
-<h3>Random Access Non-Existent Key/Value Pairs: Execution Time (integers)</h3>
-<div class="chart" id="randomgetbad-runtime"></div>
+<h3>Random Access Non-Existent Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringlengthgetbad-runtime"></div>
 <div class="xaxis-title">number of entries in hash table</div>
 
-<h3>Random Access Existing Key/Value Pairs: Memory Usage (integers)</h3>
-<div class="chart" id="randomgetgood-memory"></div>
+<h3>Random Access Existing Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringlengthgetgood-memory"></div>
 <div class="xaxis-title">number of entries in hash table</div>
 
-
-<h3>Random Access Non-Existent Key/Value Pairs: Memory Usage (integers)</h3>
-<div class="chart" id="randomgetbad-memory"></div>
+<h3>Random Access Non-Existent Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringlengthgetbad-memory"></div>
 <div class="xaxis-title">number of entries in hash table</div>
 
 
 </body>
 </html>
-
