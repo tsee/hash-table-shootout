@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    __CHART_DATA_GOES_HERE__
+
+    $(function () {
+        $.plot($("#randomset-runtime"), chart_data['randomset-runtime'], runtime_settings);
+        $.plot($("#randomset-memory"), chart_data['randomset-memory'], memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 960px;
+        height: 560px;
+    }
+    div.xaxis-title {
+        width: 960px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Random Updates to Existing Key/Value Pairs: Execution Time (integers)</h3>
+<div class="chart" id="randomset-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+<h3>Random Updates to Existing Key/Value Pairs: Memory Usage (integers)</h3>
+<div class="chart" id="randomset-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <!--[if IE]><script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="http://flot.googlecode.com/svn/trunk/jquery.flot.js"></script>
+    </head>
+    <body>
+
+<script>
+    series_settings = {
+        lines: { show: true },
+        points: { show: true }
+    };
+
+    grid_settings = { tickColor: '#ddd' };
+
+    xaxis_settings = {
+        tickSize: 5000000,
+        tickFormatter: function(num, obj) { return parseInt(num/1000000) + 'M'; }
+    };
+
+    yaxis_runtime_settings = {
+        tickSize: 10,
+        tickFormatter: function(num, obj) { return num + ' sec.'; }
+    };
+
+    yaxis_memory_settings = {
+        tickSize: 200*1024*1024,
+        tickFormatter: function(num, obj) { return parseInt(num/1024/1024) + 'MiB'; }
+    };
+
+    legend_settings = {
+        position: 'nw',
+        backgroundOpacity: 0
+    };
+
+    runtime_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_runtime_settings,
+        legend: legend_settings
+    };
+
+    memory_settings = {
+        series: series_settings,
+        grid: grid_settings,
+        xaxis: xaxis_settings,
+        yaxis: yaxis_memory_settings,
+        legend: legend_settings
+    };
+
+    chart_data = {"randomstringsetbest-runtime": [{"data": [[2000000, 1.696646], [6000000, 5.691581], [10000000, 10.095035], [14000000, 15.088664], [18000000, 20.420945], [22000000, 24.572287], [26000000, 29.835886], [30000000, 35.17545]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string] (with length)"}, {"data": [[2000000, 1.312963], [6000000, 4.479642], [10000000, 7.978179], [14000000, 12.268272], [18000000, 15.507477], [22000000, 19.822419], [26000000, 24.43165], [30000000, 29.306403]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) (with internalization & length options)"}, {"data": [[2000000, 1.211631], [6000000, 4.043896], [10000000, 8.33883], [14000000, 10.118113], [18000000, 13.954534], [22000000, 18.183556], [26000000, 22.618045], [30000000, 27.412838]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 1.95605], [6000000, 7.229113], [10000000, 13.173872], [14000000, 19.106499], [18000000, 25.538284], [22000000, 32.259606], [26000000, 37.356227], [30000000, 43.850425]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 1.906349], [6000000, 6.664079], [10000000, 11.925529], [14000000, 18.046792], [18000000, 22.953451], [22000000, 29.226981], [26000000, 35.74582], [30000000, 42.46604]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash (with length options)"}], "randomstringsetbest-memory": [{"data": [[2000000, 2847252480], [6000000, 3598925824], [10000000, 4387631104], [14000000, 5031571456], [18000000, 5674455040], [22000000, 6465511424], [26000000, 7107346432], [30000000, 7748141056]], "label": "llvm unordered_map Apple clang version version 4.1 (tags/Apple/clang-421.11.66) (based on LLVM 3.1svn) std::tr1::unordered_map [std::string] (with length)"}, {"data": [[2000000, 2849988608], [6000000, 3684253696], [10000000, 4586676224], [14000000, 5168259072], [18000000, 6420627456], [22000000, 6934544384], [26000000, 7448453120], [30000000, 7961649152]], "label": "Lua 5.2.1 (C API) table (via LuaHashMap) (with internalization & length options)"}, {"data": [[2000000, 2790166528], [6000000, 3397423104], [10000000, 3979501568], [14000000, 4687409152], [18000000, 5268447232], [22000000, 5842132992], [26000000, 6415810560], [30000000, 6989496320]], "label": "Tcl 8.5 (C API) hash"}, {"data": [[2000000, 3200176128], [6000000, 4620468224], [10000000, 5234139136], [14000000, 6653763584], [18000000, 7267811328], [22000000, 7881113600], [26000000, 10104856576], [30000000, 10716549120]], "label": "Python 2.7.2 (C API) dict"}, {"data": [[2000000, 2892247040], [6000000, 3753250816], [10000000, 4697096192], [14000000, 5372526592], [18000000, 6457913344], [22000000, 7065153536], [26000000, 7763611648], [30000000, 8470536192]], "label": "Perl 5.12.4 built for darwin-thread-multi-2level (C API) hash (with length options)"}]}
+
+
+    $(function () {
+        $.plot($("#randomstringsetbest-runtime"), chart_data['randomstringsetbest-runtime'], runtime_settings);
+        $.plot($("#randomstringsetbest-memory"), chart_data['randomstringsetbest-memory'], memory_settings);
+    });
+</script>
+
+<style>
+    body, * { font-family: sans-serif; }
+    div.chart {
+        width: 960px;
+        height: 560px;
+    }
+    div.xaxis-title {
+        width: 960px;
+        text-align: center;
+        font-style: italic;
+        font-size: small;
+        color: #666;
+    }
+</style>
+
+
+<h3>Random Updates to Existing Key/Value Pairs: Execution Time (strings)</h3>
+<div class="chart" id="randomstringsetbest-runtime"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+<h3>Random  Updates to Existing Key/Value Pairs: Memory Usage (strings)</h3>
+<div class="chart" id="randomstringsetbest-memory"></div>
+<div class="xaxis-title">number of entries in hash table</div>
+
+</body>
+</html>
