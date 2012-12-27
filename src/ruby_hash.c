@@ -91,6 +91,16 @@ static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 	}
 }
 
+static inline void SetIntIntoHash(int key, int value)
+{
+	INSERT_INT_INTO_HASH(key, value);
+}
+
+static inline void SetStringIntoHash(const char* key, int value, size_t length)
+{
+	INSERT_STR_INTO_HASH(key, value);
+}
+
 
 
 #include "template.c"

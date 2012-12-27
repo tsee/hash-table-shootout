@@ -68,4 +68,28 @@ static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 
 }
 
+static inline void SetIntIntoHash(int key, int value)
+{
+	std::tr1::unordered_map<int64_t, int64_t>::iterator iter = hash.find(key); 
+	if ( iter == hash.end() ) 
+	{ 
+		fprintf(stderr, "Error: didn't find expected key in hash to set: %d\n", key);
+		return; 
+	} 
+	iter->second = value;
+}
+
+static inline void SetStringIntoHash(const char* key, int value, size_t length)
+{
+	std::tr1::unordered_map<std::string, int64_t>::iterator iter = str_hash.find(std::string(key, length)); 
+	if ( iter == str_hash.end() ) 
+	{ 
+		fprintf(stderr, "Error: didn't find expected key in hash to set: %s\n", key);
+		return;
+	} 
+	iter->second = value;
+}
+
+
+
 #include "template.c"

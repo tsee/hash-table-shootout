@@ -38,4 +38,15 @@ static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 	return LuaHashMap_ExistsKeyStringWithLength(hash, key, length);
 }
 
+static inline void SetIntIntoHash(int key, int value)
+{
+	LuaHashMap_SetValueIntegerForKeyInteger(hash, value, key);	
+}
+
+static inline void SetStringIntoHash(const char* key, int value, size_t length)
+{
+	LuaHashMap_SetValueIntegerForKeyStringWithLength(hash, value, key, length);		
+}
+
+
 #include "template.c"

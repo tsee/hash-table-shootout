@@ -89,6 +89,20 @@ static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 
 }
 
+static inline void SetIntIntoHash(int key, int value)
+{
+	SV* sv_key = newSViv(key);
+	SV* sv_val = newSViv(value);
+	hv_store_ent(hash, sv_key, sv_val, 0);
+}
+
+static inline void SetStringIntoHash(const char* key, int value, size_t length)
+{
+	SV* sv_val = newSViv(value);
+	hv_store(hash, key, length, sv_val, 0);
+}
+
+
 
 #include "template.c"
 

@@ -16,6 +16,20 @@
  * Also of potential interest would be iteration performance (though it would require me to understand how to iterate well in all the libraries).
  */
 
+/* Set test needs to cover:
+ * - Changing a value that already exists in the hash.
+ * This includes several variations
+ * - Integer
+ * - String
+ *   	- Basic
+ * 		- Use string length
+ * 		- Use string internalization
+ * 		- Use string internalization and string length
+ * Another interesting string test would be as a value. In Lua, string internalization might
+ * make a big difference depending if the value is already internalized in Lua or if it is a new string value.
+ */
+ 
+
 #include <sys/time.h>
 #include <sys/types.h>
 #include <time.h>
@@ -207,6 +221,11 @@ void InitStrings(int num_keys)
 				should_insert = 0;
 				break;
 			}
+			default:
+			{
+				fprintf(stderr, "Unexpected case\n");
+				break;
+			}
 
 		}
 
@@ -225,7 +244,7 @@ void InitStrings(int num_keys)
 		else
 		{
 			g_charBadKeyArray[current_badkey_index].keyOriginal = strdup(str); // creates new copy of the string to store
-			g_charBadKeyArray[current_key_index].stringLength = strlen(str);
+			g_charBadKeyArray[current_badkey_index].stringLength = strlen(str);
 			current_badkey_index++;
 		}
 
@@ -291,6 +310,14 @@ int main(int argc, char ** argv)
 	}
 	else if(!strcmp(argv[2], "randomstringlengthgetbad"))
     {
+		InitStrings(num_keys);		
+	}
+    else if(!strcmp(argv[2], "randomset"))
+	{
+		InitInts(num_keys);		
+	}
+    else if(!strcmp(argv[2], "randomstringsetbest"))
+	{
 		InitStrings(num_keys);		
 	}
 
@@ -415,13 +442,38 @@ int main(int argc, char ** argv)
 		{
 			int random_index = random_in_range(0, num_keys-1);
 			const char* key = g_charBadKeyArray[random_index].keyOriginal;
-			size_t length = g_charKeyArray[random_index].stringLength;
+			size_t length = g_charBadKeyArray[random_index].stringLength;
 
 			int exists = ExistsInStrHashWithLength(key, length);
 			if(exists)
 			{
 				fprintf(stderr, "Warning: didn't expect to find value for key: %s\n", key);
 			}
+		}
+    }
+
+
+    else if(!strcmp(argv[2], "randomset"))
+	{
+		for(i = 0; i < num_keys * NUM_ITERATIONS_MULTIPLE; i++)
+		{
+			int random_index = random_in_range(0, num_keys-1);
+			int key = g_intKeyArray[random_index];
+
+			SetIntIntoHash(key, i);
+		}
+	}`
+    else if(!strcmp(argv[2], "randomstringsetbest"))
+    {
+//		fprintf(stderr, "ExistsInStrHash\n");
+		for(i = 0; i < num_keys * NUM_ITERATIONS_MULTIPLE; i++)
+		{
+			int random_index = random_in_range(0, num_keys-1);
+			const char* key = g_charKeyArray[random_index].keyInternalized;
+			size_t length = g_charKeyArray[random_index].stringLength;
+
+			SetStringIntoHash(key, i, length);
+
 		}
     }
 

@@ -112,5 +112,33 @@ static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 	}
 
 }
+
+static inline void SetIntIntoHash(int key, int value)
+{
+	Tcl_HashEntry* hash_entry;
+	int new_val;
+	hash_entry = Tcl_FindHashEntry(&hash_int, (const char*)key);
+	if(NULL == hash_entry)
+	{
+		fprintf(stderr, "Error: didn't find expected key in hash to set: %d\n", key);
+		return; 
+	}
+	Tcl_SetHashValue(hash_entry, (ClientData)value);
+}
+
+static inline void SetStringIntoHash(const char* key, int value, size_t length)
+{
+	Tcl_HashEntry* hash_entry;
+	int new_val;
+	hash_entry = Tcl_FindHashEntry(&hash_str, (const char*)key);
+	if(NULL == hash_entry)
+	{
+		fprintf(stderr, "Error: didn't find expected key in hash to set: %s\n", key);
+		return;
+	}
+	Tcl_SetHashValue(hash_entry, (ClientData)value);
+}
+
+
 #include "template.c"
 
