@@ -21,7 +21,7 @@ static inline const char* InsertStrIntoHash(const char* key, int value)
 	return key;
 }
 
-int ExistsInIntHash(int key)
+static inline int ExistsInIntHash(int key)
 {
 		std::tr1::unordered_map<int64_t, int64_t>::const_iterator iter = hash.find(key); 
 		if ( iter == hash.end() ) 
@@ -37,9 +37,25 @@ int ExistsInIntHash(int key)
 }
 
 
-int ExistsInStrHash(const char* key)
+static inline int ExistsInStrHash(const char* key)
 {
 		std::tr1::unordered_map<std::string, int64_t>::const_iterator iter = str_hash.find(key); 
+		if ( iter == str_hash.end() ) 
+		{ 
+			return 0; 
+		} 
+		else 
+		{ 
+		//	fprintf(stderr, "found: %s, %d", iter->first, iter->second);
+			return 1; 
+		} 
+
+}
+
+
+static inline int ExistsInStrHashWithLength(const char* key, size_t length)
+{
+		std::tr1::unordered_map<std::string, int64_t>::const_iterator iter = str_hash.find(std::string(key, length)); 
 		if ( iter == str_hash.end() ) 
 		{ 
 			return 0; 

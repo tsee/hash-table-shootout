@@ -207,11 +207,6 @@ void InitStrings(int num_keys)
 				should_insert = 0;
 				break;
 			}
-			default:
-			{
-				fprintf(stderr, "unexpected case\n");
-				break;
-			}
 
 		}
 
@@ -230,7 +225,7 @@ void InitStrings(int num_keys)
 		else
 		{
 			g_charBadKeyArray[current_badkey_index].keyOriginal = strdup(str); // creates new copy of the string to store
-			g_charBadKeyArray[current_badkey_index].stringLength = strlen(str);
+			g_charBadKeyArray[current_key_index].stringLength = strlen(str);
 			current_badkey_index++;
 		}
 
@@ -420,7 +415,7 @@ int main(int argc, char ** argv)
 		{
 			int random_index = random_in_range(0, num_keys-1);
 			const char* key = g_charBadKeyArray[random_index].keyOriginal;
-			size_t length = g_charBadKeyArray[random_index].stringLength;
+			size_t length = g_charKeyArray[random_index].stringLength;
 
 			int exists = ExistsInStrHashWithLength(key, length);
 			if(exists)

@@ -50,7 +50,7 @@ static inline const char* InsertStrIntoHash(const char* key, int value)
 	return key;
 }
 
-int ExistsInIntHash(int key)
+static inline int ExistsInIntHash(int key)
 {
 	Tcl_HashEntry* hash_entry;
 	hash_entry = Tcl_FindHashEntry(&hash_int, (const char*)key); 
@@ -71,7 +71,28 @@ int ExistsInIntHash(int key)
 
 
 }
-int ExistsInStrHash(const char* key)
+static inline int ExistsInStrHash(const char* key)
+{
+	Tcl_HashEntry* hash_entry;
+	hash_entry = Tcl_FindHashEntry(&hash_str, (const char*)key); 
+
+	if(hash_entry == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		/*
+		int ret_val = (int)Tcl_GetHashValue(hash_entry);
+		const char* ret_key = Tcl_GetHashKey(&hash_str, hash_entry);	
+//		fprintf(stderr, "Got value:%d for key:%s / origkeyaddr:%x tclkeyaddr:%x\n", ret_val, ret_key, key, ret_key);
+	*/
+		return 1;
+	}
+
+}
+
+static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 {
 	Tcl_HashEntry* hash_entry;
 	hash_entry = Tcl_FindHashEntry(&hash_str, (const char*)key); 

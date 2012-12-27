@@ -17,7 +17,7 @@ static PerlInterpreter *my_perl;
 		SV* sv_val = newSViv(value); \
         /* sv_setiv(ikey, key); */ \
         /* SvREFCNT_inc(ival); */ \
-	/*		fprintf(stderr, "insert %d, %d\n", key, value); */ \	
+	/*		fprintf(stderr, "insert %d, %d\n", key, value); */ \
 /*        SvREFCNT_inc(sv_key); */ \
     /*    SvREFCNT_inc(sv_val); */ \
         hv_store_ent(hash, sv_key, sv_val, 0); \
@@ -26,16 +26,16 @@ static PerlInterpreter *my_perl;
        /* sv_setiv(ikey, key); */ \
        /* SvREFCNT_dec(ival); */ \
         /* hv_delete_ent(hash, ikey, G_DISCARD, 0); */ \
-		SV* sv_key = newSViv(key); \	
+		SV* sv_key = newSViv(key); \
 		SV* sv = hv_delete_ent(hash, sv_key, 0, 0); \
 		if(NULL == sv) \
 		{ \
-		/*	fprintf(stderr, "sv is null\n"); */ \	
+		/*	fprintf(stderr, "sv is null\n"); */ \
 		} \
 		else \
 		{ \
 		/*	fprintf(stderr, "sv is not null\n"); */ \
-			SvREFCNT_dec(sv); \			
+			SvREFCNT_dec(sv); \
 		} \
 		SvREFCNT_dec(sv_key); \
 /*		hv_delete(hash, new_string_from_integer(key), strlen(new_string_from_integer(key)), 0); */ \
@@ -54,11 +54,11 @@ static PerlInterpreter *my_perl;
 		SV* sv = hv_delete(hash, key, strlen(key), 0); \
 		if(NULL == sv) \
 		{ \
-		/*	fprintf(stderr, "sv is null\n"); */ \	
+		/*	fprintf(stderr, "sv is null\n"); */ \
 		} \
 		else \
 		{ \
-		/*	fprintf(stderr, "sv is not null\n"); */ \			
+		/*	fprintf(stderr, "sv is not null\n"); */ \
 			SvREFCNT_dec(sv); \
 		} \
     } while(0)
@@ -69,7 +69,7 @@ static inline const char* InsertStrIntoHash(const char* key, int value)
 	return key;
 }
 
-int ExistsInIntHash(int key)
+static inline int ExistsInIntHash(int key)
 {
 	int ret_val;	
 	SV* sv_key = newSViv(key);
@@ -77,11 +77,18 @@ int ExistsInIntHash(int key)
 	SvREFCNT_dec(sv_key);
 	return ret_val;
 }
-int ExistsInStrHash(const char* key)
+static inline int ExistsInStrHash(const char* key)
 {
 	return hv_exists(hash, key, strlen(key));
 
 }
+
+static inline int ExistsInStrHashWithLength(const char* key, size_t length)
+{
+	return hv_exists(hash, key, length);
+
+}
+
 
 #include "template.c"
 

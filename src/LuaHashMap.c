@@ -23,13 +23,19 @@ static inline const char* InsertStrIntoHash(const char* key, int value)
 
 }
 
-int ExistsInIntHash(int key)
+static inline int ExistsInIntHash(int key)
 {
 	return LuaHashMap_ExistsKeyInteger(hash, key);
 }
 
-int ExistsInStrHash(const char* key)
+static inline int ExistsInStrHash(const char* key)
 {
 	return LuaHashMap_ExistsKeyString(hash, key);
 }
+
+static inline int ExistsInStrHashWithLength(const char* key, size_t length)
+{
+	return LuaHashMap_ExistsKeyStringWithLength(hash, key, length);
+}
+
 #include "template.c"

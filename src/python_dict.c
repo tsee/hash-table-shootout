@@ -37,7 +37,7 @@ static inline const char* InsertStrIntoHash(const char* key, int value)
 }
 
 
-int ExistsInIntHash(int key)
+static inline int ExistsInIntHash(int key)
 {
 	PyObject * py_int_key = PyInt_FromLong(key); /* leak */
 //	PyObject* value = PyDict_GetItem(hash, py_int_key);
@@ -56,7 +56,22 @@ int ExistsInIntHash(int key)
 	}
 
 }
-int ExistsInStrHash(const char* key)
+static inline int ExistsInStrHash(const char* key)
+{
+	PyObject* value = PyDict_GetItemString(hash, key);
+	if(value == NULL)
+	{
+//		fprintf(stderr, "item not found for key %s\n", key);
+		return 0;
+	}
+	else
+	{
+//		fprintf(stderr, "item foun for key %s\n", key);
+		return 1;		
+	}
+}
+
+static inline int ExistsInStrHashWithLength(const char* key, size_t length)
 {
 	PyObject* value = PyDict_GetItemString(hash, key);
 	if(value == NULL)

@@ -30,7 +30,7 @@ static inline const char* InsertStrIntoHash(const char* key, int value)
 	return key;
 }
 
-int ExistsInIntHash(int key)
+static inline int ExistsInIntHash(int key)
 {
 	VALUE rb_int_key = INT2NUM(key); /* leak??? */
 	VALUE ret_val = rb_hash_aref(hash, rb_int_key);
@@ -49,7 +49,7 @@ int ExistsInIntHash(int key)
 	}
 }
 
-int ExistsInStrHash(const char* key)
+static inline int ExistsInStrHash(const char* key)
 {
 	VALUE rb_str_key = rb_str_new2(key); /* leak??? */
 		VALUE ret_val = rb_hash_aref(hash, rb_str_key);
@@ -69,6 +69,28 @@ int ExistsInStrHash(const char* key)
 		return 0;
 	}
 }
+
+static inline int ExistsInStrHashWithLength(const char* key, size_t length)
+{
+	VALUE rb_str_key = rb_str_new2(key); /* leak??? */
+		VALUE ret_val = rb_hash_aref(hash, rb_str_key);
+	
+	if(ret_val != Qnil)
+	{
+//		fprintf(stderr, "found key: %s", key);
+//		fprintf(stderr, " ret_val NUM2INT: %d\n", NUM2INT(ret_val));
+
+		
+		return 1;
+	}
+	else
+	{
+//		fprintf(stderr, "not found key: %s", key);
+		
+		return 0;
+	}
+}
+
 
 
 #include "template.c"
